@@ -1,0 +1,528 @@
+{
+    "context": {
+        "$id": "Constraint Rate Adapter",
+        "contract": {
+            "deployments": [
+                {
+                    "chainId": 1,
+                    "address": "0xCCcCcCcccCccEF378949D1a61ED2283C831AF03A"
+                }
+            ],
+            "abi": [
+                {
+                    "type": "function",
+                    "name": "CORK_POOL_MANAGER",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "corkPoolManager",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "DEFAULT_ADMIN_ROLE",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "UPGRADE_INTERFACE_VERSION",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "string",
+                            "internalType": "string"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "adjustedRate",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "rate",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "bootstrap",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "constraints",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "getRoleAdmin",
+                    "inputs": [
+                        {
+                            "name": "role",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "grantRole",
+                    "inputs": [
+                        {
+                            "name": "role",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        },
+                        {
+                            "name": "account",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "hasRole",
+                    "inputs": [
+                        {
+                            "name": "role",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        },
+                        {
+                            "name": "account",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "initialize",
+                    "inputs": [
+                        {
+                            "name": "ensOwner",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "upgradeAdmin",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "owner",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewAdjustedRate",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "rate",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "proxiableUUID",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "renounceOwnership",
+                    "inputs": [],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "renounceRole",
+                    "inputs": [
+                        {
+                            "name": "role",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        },
+                        {
+                            "name": "callerConfirmation",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "revokeRole",
+                    "inputs": [
+                        {
+                            "name": "role",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        },
+                        {
+                            "name": "account",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "setOnceCorkPoolManager",
+                    "inputs": [
+                        {
+                            "name": "corkPoolManager",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "supportsInterface",
+                    "inputs": [
+                        {
+                            "name": "interfaceId",
+                            "type": "bytes4",
+                            "internalType": "bytes4"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "transferOwnership",
+                    "inputs": [
+                        {
+                            "name": "newOwner",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "upgradeToAndCall",
+                    "inputs": [
+                        {
+                            "name": "newImplementation",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "data",
+                            "type": "bytes",
+                            "internalType": "bytes"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "payable"
+                }
+            ]
+        }
+    },
+    "metadata": {
+        "owner": "Cork Protocol",
+        "info": {
+            "legalName": "Cork Protocol",
+            "url": "https://www.cork.tech/"
+        }
+    },
+    "display": {
+        "formats": {
+            "assets(bytes32)": {
+                "intent": "get collateral and reference assets",
+                "fields": [
+                    {
+                        "label": "Pool Id",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    }
+                ],
+                "required": [
+                    "#.poolId"
+                ]
+            },
+            "grantRole(bytes32,address)": {
+                "intent": "grant role",
+                "fields": [
+                    {
+                        "label": "Role",
+                        "format": "raw",
+                        "path": "#.role"
+                    },
+                    {
+                        "label": "Account",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.account"
+                    }
+                ],
+                "required": [
+                    "#.role",
+                    "#.account"
+                ]
+            },
+            "renounceRole(bytes32,address)": {
+                "intent": "renounce role",
+                "fields": [
+                    {
+                        "label": "Role",
+                        "format": "raw",
+                        "path": "#.role"
+                    },
+                    {
+                        "label": "Caller Confirmation",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "wallet",
+                                "eoa",
+                                "contract",
+                                "token",
+                                "collection"
+                            ]
+                        },
+                        "path": "#.callerConfirmation"
+                    }
+                ],
+                "required": [
+                    "#.role",
+                    "#.callerConfirmation"
+                ]
+            },
+            "revokeRole(bytes32,address)": {
+                "intent": "revoke role",
+                "fields": [
+                    {
+                        "label": "Role",
+                        "format": "raw",
+                        "path": "#.role"
+                    },
+                    {
+                        "label": "Account",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.account"
+                    }
+                ],
+                "required": [
+                    "#.role",
+                    "#.account"
+                ]
+            },
+            "transferOwnership(address)": {
+                "intent": "transfer ownership",
+                "fields": [
+                    {
+                        "label": "New Owner",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.newOwner"
+                    }
+                ],
+                "required": [
+                    "#.newOwner"
+                ]
+            },
+            "upgradeToAndCall(address,bytes)": {
+                "intent": "upgrade contract",
+                "fields": [
+                    {
+                        "label": "New Implementation",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "wallet",
+                                "eoa",
+                                "contract",
+                                "token",
+                                "collection"
+                            ]
+                        },
+                        "path": "#.newImplementation"
+                    },
+                    {
+                        "label": "Data",
+                        "format": "raw",
+                        "path": "#.data"
+                    }
+                ],
+                "required": [
+                    "#.newImplementation",
+                    "#.data"
+                ]
+            },
+            "initialize(address,address)": {
+                "intent": "initialize contract",
+                "fields": [
+                    {
+                        "label": "Ens Owner",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.ensOwner"
+                    },
+                    {
+                        "label": "Admin",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "wallet",
+                                "eoa",
+                                "contract",
+                                "token",
+                                "collection"
+                            ]
+                        },
+                        "path": "#.admin"
+                    }
+                ],
+                "required": [
+                    "#.ensOwner",
+                    "#.admin"
+                ]
+            }
+        }
+    }
+}
