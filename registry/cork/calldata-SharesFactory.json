@@ -1,0 +1,169 @@
+{
+    "context": {
+        "$id": "SharesFactory",
+        "contract": {
+            "deployments": [
+                {
+                    "chainId": 1,
+                    "address": "0xcCCCccCCCcCc1782617fe14A386AC910a20D4324"
+                }
+            ],
+            "abi": [
+                {
+                    "type": "function",
+                    "name": "CORK_POOL_MANAGER",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "deployPoolShares",
+                    "inputs": [
+                        {
+                            "name": "params",
+                            "type": "tuple",
+                            "internalType": "struct ISharesFactory.DeployParams",
+                            "components": [
+                                {
+                                    "name": "poolParams",
+                                    "type": "tuple",
+                                    "internalType": "struct Market",
+                                    "components": [
+                                        {
+                                            "name": "collateralAsset",
+                                            "type": "address",
+                                            "internalType": "address"
+                                        },
+                                        {
+                                            "name": "referenceAsset",
+                                            "type": "address",
+                                            "internalType": "address"
+                                        },
+                                        {
+                                            "name": "expiryTimestamp",
+                                            "type": "uint256",
+                                            "internalType": "uint256"
+                                        },
+                                        {
+                                            "name": "rateMin",
+                                            "type": "uint256",
+                                            "internalType": "uint256"
+                                        },
+                                        {
+                                            "name": "rateMax",
+                                            "type": "uint256",
+                                            "internalType": "uint256"
+                                        },
+                                        {
+                                            "name": "rateChangePerDayMax",
+                                            "type": "uint256",
+                                            "internalType": "uint256"
+                                        },
+                                        {
+                                            "name": "rateChangeCapacityMax",
+                                            "type": "uint256",
+                                            "internalType": "uint256"
+                                        },
+                                        {
+                                            "name": "rateOracle",
+                                            "type": "address",
+                                            "internalType": "address"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "poolId",
+                                    "type": "bytes32",
+                                    "internalType": "MarketId"
+                                }
+                            ]
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "principalToken",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "swapToken",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "owner",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "renounceOwnership",
+                    "inputs": [],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "transferOwnership",
+                    "inputs": [
+                        {
+                            "name": "newOwner",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                }
+            ]
+        }
+    },
+    "metadata": {
+        "owner": "Cork Protocol",
+        "info": {
+            "legalName": "Cork Protocol",
+            "url": "https://www.cork.tech/"
+        }
+    },
+    "display": {
+        "formats": {
+            "transferOwnership(address)": {
+                "intent": "transfer ownership",
+                "fields": [
+                    {
+                        "label": "New Owner",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.newOwner"
+                    }
+                ],
+                "required": [
+                    "#.newOwner"
+                ]
+            }
+        }
+    }
+}
