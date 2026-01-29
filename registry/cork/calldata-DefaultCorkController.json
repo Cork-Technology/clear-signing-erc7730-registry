@@ -978,19 +978,6 @@
                     "#.marketId"
                 ]
             },
-            "getRoleAdmin(bytes32)": {
-                "intent": "get role admin",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    }
-                ],
-                "required": [
-                    "#.role"
-                ]
-            },
             "grantRole(bytes32,address)": {
                 "intent": "grant role ",
                 "fields": [
@@ -1016,122 +1003,6 @@
                 "required": [
                     "#.role",
                     "#.account"
-                ]
-            },
-            "hasRole(bytes32,address)": {
-                "intent": "check if address has role",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Account",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.account"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.account"
-                ]
-            },
-            "isDepositPaused(bytes32)": {
-                "intent": "check if deposit is paused",
-                "fields": [
-                    {
-                        "label": "Market Id",
-                        "format": "raw",
-                        "path": "#.id"
-                    }
-                ],
-                "required": [
-                    "#.id"
-                ]
-            },
-            "isSwapPaused(bytes32)": {
-                "intent": "check if swap paused",
-                "fields": [
-                    {
-                        "label": "Market Id",
-                        "format": "raw",
-                        "path": "#.id"
-                    }
-                ],
-                "required": [
-                    "#.id"
-                ]
-            },
-            "isUnwindDepositAndMintPaused(bytes32)": {
-                "intent": "check if unwind mint & deposit is paused",
-                "fields": [
-                    {
-                        "label": "Market Id",
-                        "format": "raw",
-                        "path": "#.id"
-                    }
-                ],
-                "required": [
-                    "#.id"
-                ]
-            },
-            "isUnwindSwapPaused(bytes32)": {
-                "intent": "check if repurchase is paused",
-                "fields": [
-                    {
-                        "label": "Market Id",
-                        "format": "raw",
-                        "path": "#.id"
-                    }
-                ],
-                "required": [
-                    "#.id"
-                ]
-            },
-            "isWhitelisted(bytes32,address)": {
-                "intent": "check if address is whitelisted",
-                "fields": [
-                    {
-                        "label": "Market Id",
-                        "format": "raw",
-                        "path": "#.marketId"
-                    },
-                    {
-                        "label": "Account",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet",
-                                "contract"
-                            ]
-                        },
-                        "path": "#.account"
-                    }
-                ],
-                "required": [
-                    "#.marketId",
-                    "#.account"
-                ]
-            },
-            "isWithdrawalPaused(bytes32)": {
-                "intent": "check if withdrawal is paused",
-                "fields": [
-                    {
-                        "label": "Market Id",
-                        "format": "raw",
-                        "path": "#.id"
-                    }
-                ],
-                "required": [
-                    "#.id"
                 ]
             },
             "pauseDeposits(bytes32)": {
@@ -1364,19 +1235,6 @@
                 ],
                 "required": [
                     "#.treasuryAddress"
-                ]
-            },
-            "supportsInterface(bytes4)": {
-                "intent": "check if interface is supported",
-                "fields": [
-                    {
-                        "label": "Interface Id",
-                        "format": "raw",
-                        "path": "#.interfaceId"
-                    }
-                ],
-                "required": [
-                    "#.interfaceId"
                 ]
             },
             "transferOwnership(address)": {
