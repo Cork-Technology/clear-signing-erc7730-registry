@@ -1,0 +1,2588 @@
+{
+    "$schema": "../../specs/erc7730-v1.schema.json",
+    "includes": "common-ownership.json",
+    "context": {
+        "$id": "CorkPoolManager",
+        "contract": {
+            "deployments": [
+                {
+                    "chainId": 1,
+                    "address": "0xccCCcCcCCccCfAE2Ee43F0E727A8c2969d74B9eC"
+                }
+            ],
+            "abi": [
+                {
+                    "type": "function",
+                    "name": "CORK_CONTROLLER_ROLE",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "DEFAULT_ADMIN_ROLE",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "UPGRADE_INTERFACE_VERSION",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "string",
+                            "internalType": "string"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "assets",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssets",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "referenceAssets",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "createNewPool",
+                    "inputs": [
+                        {
+                            "name": "poolParams",
+                            "type": "tuple",
+                            "internalType": "struct Market",
+                            "components": [
+                                {
+                                    "name": "collateralAsset",
+                                    "type": "address",
+                                    "internalType": "address"
+                                },
+                                {
+                                    "name": "referenceAsset",
+                                    "type": "address",
+                                    "internalType": "address"
+                                },
+                                {
+                                    "name": "expiryTimestamp",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateMin",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateMax",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateChangePerDayMax",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateChangeCapacityMax",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateOracle",
+                                    "type": "address",
+                                    "internalType": "address"
+                                }
+                            ]
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "deposit",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "collateralAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "cptAndCstSharesOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "exercise",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "cstSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "referenceAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "exerciseOther",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "referenceAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "cstSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "extsload",
+                    "inputs": [
+                        {
+                            "name": "slot",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "extsload",
+                    "inputs": [
+                        {
+                            "name": "startSlot",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        },
+                        {
+                            "name": "nSlots",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32[]",
+                            "internalType": "bytes32[]"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "extsload",
+                    "inputs": [
+                        {
+                            "name": "slots",
+                            "type": "bytes32[]",
+                            "internalType": "bytes32[]"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32[]",
+                            "internalType": "bytes32[]"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "getId",
+                    "inputs": [
+                        {
+                            "name": "marketParameters",
+                            "type": "tuple",
+                            "internalType": "struct Market",
+                            "components": [
+                                {
+                                    "name": "collateralAsset",
+                                    "type": "address",
+                                    "internalType": "address"
+                                },
+                                {
+                                    "name": "referenceAsset",
+                                    "type": "address",
+                                    "internalType": "address"
+                                },
+                                {
+                                    "name": "expiryTimestamp",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateMin",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateMax",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateChangePerDayMax",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateChangeCapacityMax",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateOracle",
+                                    "type": "address",
+                                    "internalType": "address"
+                                }
+                            ]
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "stateMutability": "pure"
+                },
+                {
+                    "type": "function",
+                    "name": "getPausedBitMap",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "pauseBitMap",
+                            "type": "uint16",
+                            "internalType": "uint16"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "getRoleAdmin",
+                    "inputs": [
+                        {
+                            "name": "role",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "hasRole",
+                    "inputs": [
+                        {
+                            "name": "role",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        },
+                        {
+                            "name": "account",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "initialize",
+                    "inputs": [
+                        {
+                            "name": "ensOwner",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "admin",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "constraintRateAdapter",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "treasury",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "whitelistManager",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "market",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "parameters",
+                            "type": "tuple",
+                            "internalType": "struct Market",
+                            "components": [
+                                {
+                                    "name": "collateralAsset",
+                                    "type": "address",
+                                    "internalType": "address"
+                                },
+                                {
+                                    "name": "referenceAsset",
+                                    "type": "address",
+                                    "internalType": "address"
+                                },
+                                {
+                                    "name": "expiryTimestamp",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateMin",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateMax",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateChangePerDayMax",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateChangeCapacityMax",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "rateOracle",
+                                    "type": "address",
+                                    "internalType": "address"
+                                }
+                            ]
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxDeposit",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxCollateralAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxExercise",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxCstSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxExerciseOther",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxReferenceAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxMint",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxCptAndCstSharesOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxRedeem",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxCptSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxSwap",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxCollateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxUnwindDeposit",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxCollateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxUnwindExercise",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxCstSharesOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxUnwindExerciseOther",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxReferenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxUnwindMint",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxCptAndCstSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxUnwindSwap",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxCollateralAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxWithdraw",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxCollateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "maxWithdrawOther",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "maxReferenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "mint",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "cptAndCstSharesOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "owner",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "paused",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewDeposit",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "collateralAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "cptAndCstSharesOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewExercise",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "cstSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "referenceAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewExerciseOther",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "referenceAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "cstSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewMint",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "cptAndCstSharesOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewRedeem",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "cptSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "referenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewSwap",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "cstSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "referenceAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewUnwindDeposit",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "cptAndCstSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewUnwindExercise",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "cstSharesOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "referenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewUnwindExerciseOther",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "referenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "cstSharesOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewUnwindMint",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "cptAndCstSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewUnwindSwap",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "collateralAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "cstSharesOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "referenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewWithdraw",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "cptSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "actualCollateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "actualReferenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "previewWithdrawOther",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "referenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "cptSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "actualCollateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "actualReferenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "proxiableUUID",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "redeem",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "cptSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "referenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "renounceOwnership",
+                    "inputs": [],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "setAllPaused",
+                    "inputs": [
+                        {
+                            "name": "isAllPaused",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "setPausedBitMap",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "newPauseBitMap",
+                            "type": "uint16",
+                            "internalType": "uint16"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "setSharesFactory",
+                    "inputs": [
+                        {
+                            "name": "newSharesFactory",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "setTreasuryAddress",
+                    "inputs": [
+                        {
+                            "name": "newTreasury",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "shares",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "principalToken",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "swapToken",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "supportsInterface",
+                    "inputs": [
+                        {
+                            "name": "interfaceId",
+                            "type": "bytes4",
+                            "internalType": "bytes4"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "swap",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "cstSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "referenceAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "swapFee",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "fees",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "swapRate",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "rate",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "transferOwnership",
+                    "inputs": [
+                        {
+                            "name": "newOwner",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unwindDeposit",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "cptAndCstSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unwindExercise",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "cstSharesOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "referenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unwindExerciseOther",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "referenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "cstSharesOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unwindMint",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "cptAndCstSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unwindSwap",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "collateralAssetsIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "cstSharesOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "referenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unwindSwapFee",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "fees",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "updateSwapFeePercentage",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "newSwapFeePercentage",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "updateUnwindSwapFeePercentage",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "newUnwindSwapFeePercentage",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "upgradeToAndCall",
+                    "inputs": [
+                        {
+                            "name": "newImplementation",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "data",
+                            "type": "bytes",
+                            "internalType": "bytes"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "payable"
+                },
+                {
+                    "type": "function",
+                    "name": "withdraw",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "collateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "cptSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "actualCollateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "actualReferenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "withdrawOther",
+                    "inputs": [
+                        {
+                            "name": "poolId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "referenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "owner",
+                            "type": "address",
+                            "internalType": "address"
+                        },
+                        {
+                            "name": "receiver",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "cptSharesIn",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "actualCollateralAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        },
+                        {
+                            "name": "actualReferenceAssetsOut",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable"
+                }
+            ]
+        }
+    },
+    "metadata": {
+        "owner": "Cork Protocol",
+        "info": {
+            "legalName": "Cork Protocol",
+            "url": "https://www.cork.tech/"
+        }
+    },
+    "display": {
+        "formats": {
+            "createNewPool((address,address,uint256,uint256,uint256,uint256,uint256,address))": {
+                "intent": "Create new pool",
+                "fields": [
+                    {
+                        "path": "#.poolParams",
+                        "fields": [
+                            {
+                                "label": "Collateral asset",
+                                "format": "addressName",
+                                "params": {
+                                    "types": [
+                                        "token"
+                                    ]
+                                },
+                                "path": "collateralAsset"
+                            },
+                            {
+                                "label": "Reference asset",
+                                "format": "addressName",
+                                "params": {
+                                    "types": [
+                                        "token"
+                                    ]
+                                },
+                                "path": "referenceAsset"
+                            },
+                            {
+                                "label": "Expiry timestamp",
+                                "format": "date",
+                                "params": {
+                                    "encoding": "timestamp"
+                                },
+                                "path": "expiryTimestamp"
+                            },
+                            {
+                                "label": "Rate minimum",
+                                "format": "raw",
+                                "path": "rateMin"
+                            },
+                            {
+                                "label": "Rate maximum",
+                                "format": "raw",
+                                "path": "rateMax"
+                            },
+                            {
+                                "label": "Rate change per day maximum",
+                                "format": "raw",
+                                "path": "rateChangePerDayMax"
+                            },
+                            {
+                                "label": "Rate change capacity maximum",
+                                "format": "raw",
+                                "path": "rateChangeCapacityMax"
+                            },
+                            {
+                                "label": "Rate oracle",
+                                "format": "addressName",
+                                "params": {
+                                    "types": [
+                                        "wallet",
+                                        "eoa",
+                                        "contract",
+                                        "token",
+                                        "collection"
+                                    ]
+                                },
+                                "path": "rateOracle"
+                            }
+                        ]
+                    }
+                ],
+                "required": [
+                    "#.poolParams.collateralAsset",
+                    "#.poolParams.referenceAsset",
+                    "#.poolParams.expiryTimestamp",
+                    "#.poolParams.rateMin",
+                    "#.poolParams.rateMax",
+                    "#.poolParams.rateChangePerDayMax",
+                    "#.poolParams.rateChangeCapacityMax",
+                    "#.poolParams.rateOracle"
+                ]
+            },
+            "deposit(bytes32,uint256,address)": {
+                "intent": "Deposit",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "Collateral assets to deposit",
+                        "format": "raw",
+                        "path": "#.collateralAssetsIn"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.collateralAssetsIn",
+                    "#.receiver"
+                ]
+            },
+            "exercise(bytes32,uint256,address)": {
+                "intent": "Exercise",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "cST shares to exercise",
+                        "format": "raw",
+                        "path": "#.cstSharesIn"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.cstSharesIn",
+                    "#.receiver"
+                ]
+            },
+            "exerciseOther(bytes32,uint256,address)": {
+                "intent": "Exercise",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "Reference assets to exercise",
+                        "format": "raw",
+                        "path": "#.referenceAssetsIn"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.referenceAssetsIn",
+                    "#.receiver"
+                ]
+            },
+            "redeem(bytes32,uint256,address,address)": {
+                "intent": "Withdraw",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "cPT shares to redeem",
+                        "format": "raw",
+                        "path": "#.cptSharesIn"
+                    },
+                    {
+                        "label": "Owner",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.owner"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.cptSharesIn",
+                    "#.owner",
+                    "#.receiver"
+                ]
+            },
+            "swap(bytes32,uint256,address)": {
+                "intent": "Exercise",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "Collateral assets out",
+                        "format": "raw",
+                        "path": "#.collateralAssetsOut"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.collateralAssetsOut",
+                    "#.receiver"
+                ]
+            },
+            "unwindDeposit(bytes32,uint256,address,address)": {
+                "intent": "Unwind deposit",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "Collateral assets out",
+                        "format": "raw",
+                        "path": "#.collateralAssetsOut"
+                    },
+                    {
+                        "label": "Owner",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.owner"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.collateralAssetsOut",
+                    "#.owner",
+                    "#.receiver"
+                ]
+            },
+            "unwindExercise(bytes32,uint256,address)": {
+                "intent": "Repurchase",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "cST shares out",
+                        "format": "raw",
+                        "path": "#.cstSharesOut"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.cstSharesOut",
+                    "#.receiver"
+                ]
+            },
+            "unwindExerciseOther(bytes32,uint256,address)": {
+                "intent": "Repurchase",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "Reference assets out",
+                        "format": "raw",
+                        "path": "#.referenceAssetsOut"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.referenceAssetsOut",
+                    "#.receiver"
+                ]
+            },
+            "unwindMint(bytes32,uint256,address,address)": {
+                "intent": "Unwind deposit",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "cPT and cST shares to burn",
+                        "format": "raw",
+                        "path": "#.cptAndCstSharesIn"
+                    },
+                    {
+                        "label": "Owner",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.owner"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.cptAndCstSharesIn",
+                    "#.owner",
+                    "#.receiver"
+                ]
+            },
+            "unwindSwap(bytes32,uint256,address)": {
+                "intent": "Repurchase",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "Collateral assets to repurchase",
+                        "format": "raw",
+                        "path": "#.collateralAssetsIn"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.collateralAssetsIn",
+                    "#.receiver"
+                ]
+            },
+            "withdraw(bytes32,uint256,address,address)": {
+                "intent": "Withdraw",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "Collateral assets out",
+                        "format": "raw",
+                        "path": "#.collateralAssetsOut"
+                    },
+                    {
+                        "label": "Owner",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.owner"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.collateralAssetsOut",
+                    "#.owner",
+                    "#.receiver"
+                ]
+            },
+            "withdrawOther(bytes32,uint256,address,address)": {
+                "intent": "Withdraw",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "Reference assets out",
+                        "format": "raw",
+                        "path": "#.referenceAssetsOut"
+                    },
+                    {
+                        "label": "Owner",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.owner"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.referenceAssetsOut",
+                    "#.owner",
+                    "#.receiver"
+                ]
+            },
+            "mint(bytes32,uint256,address)": {
+                "intent": "Deposit",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "cPT and cST shares out",
+                        "format": "raw",
+                        "path": "#.cptAndCstSharesOut"
+                    },
+                    {
+                        "label": "Receiver",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.receiver"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.cptAndCstSharesOut",
+                    "#.receiver"
+                ]
+            },
+            "setAllPaused(bool)": {
+                "intent": "Pause all market",
+                "fields": [
+                    {
+                        "label": "Is all paused",
+                        "format": "raw",
+                        "path": "#.isAllPaused"
+                    }
+                ],
+                "required": [
+                    "#.isAllPaused"
+                ]
+            },
+            "setPausedBitMap(bytes32,uint16)": {
+                "intent": "Pause",
+                "fields": [
+                    {
+                        "label": "Pool ID",
+                        "format": "raw",
+                        "path": "#.poolId"
+                    },
+                    {
+                        "label": "New pause bit map",
+                        "format": "raw",
+                        "path": "#.newPauseBitMap"
+                    }
+                ],
+                "required": [
+                    "#.poolId",
+                    "#.newPauseBitMap"
+                ]
+            },
+            "initialize(address,address,address,address,address)": {
+                "intent": "Initialize",
+                "fields": [
+                    {
+                        "label": "ENS owner",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.ensOwner"
+                    },
+                    {
+                        "label": "Admin",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "wallet",
+                                "eoa",
+                                "contract",
+                                "token",
+                                "collection"
+                            ]
+                        },
+                        "path": "#.admin"
+                    },
+                    {
+                        "label": "Constraint rate adapter",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "wallet",
+                                "eoa",
+                                "contract",
+                                "token",
+                                "collection"
+                            ]
+                        },
+                        "path": "#.constraintRateAdapter"
+                    },
+                    {
+                        "label": "Treasury",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "wallet",
+                                "eoa",
+                                "contract",
+                                "token",
+                                "collection"
+                            ]
+                        },
+                        "path": "#.treasury"
+                    },
+                    {
+                        "label": "Whitelist manager",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "wallet",
+                                "eoa",
+                                "contract",
+                                "token",
+                                "collection"
+                            ]
+                        },
+                        "path": "#.whitelistManager"
+                    }
+                ],
+                "required": [
+                    "#.ensOwner",
+                    "#.admin",
+                    "#.constraintRateAdapter",
+                    "#.treasury",
+                    "#.whitelistManager"
+                ]
+            },
+            "setSharesFactory(address)": {
+                "intent": "Set shares factory address",
+                "fields": [
+                    {
+                        "label": "New shares factory",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.newSharesFactory"
+                    }
+                ],
+                "required": [
+                    "#.newSharesFactory"
+                ]
+            },
+            "setTreasuryAddress(address)": {
+                "intent": "Set treasury address",
+                "fields": [
+                    {
+                        "label": "New treasury",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "wallet",
+                                "eoa",
+                                "contract",
+                                "token",
+                                "collection"
+                            ]
+                        },
+                        "path": "#.newTreasury"
+                    }
+                ],
+                "required": [
+                    "#.newTreasury"
+                ]
+            }
+        }
+    }
+}

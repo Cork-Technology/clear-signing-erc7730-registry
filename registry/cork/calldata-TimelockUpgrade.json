@@ -1,0 +1,21 @@
+{
+    "includes": "common-timelock.json",
+    "context": {
+        "$id": "Timelock Upgrade",
+        "contract": {
+            "deployments": [
+                {
+                    "chainId": 1,
+                    "address": "0x7CcCCCccCcc0b4c00d01f321035b8e4523eF8448"
+                }
+            ]
+        }
+    },
+    "metadata": {
+        "owner": "Cork Protocol",
+        "info": {
+            "legalName": "Cork Protocol",
+            "url": "https://www.cork.tech/"
+        }
+    }
+}

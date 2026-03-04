@@ -1,0 +1,1228 @@
+{
+    "$schema": "../../specs/erc7730-v1.schema.json",
+    "includes": "common-ownership.json",
+    "context": {
+        "$id": "DefaultCorkController",
+        "contract": {
+            "deployments": [
+                {
+                    "chainId": 1,
+                    "address": "0xcCcCcCccCccbC06627F8aad7aAF13fe3a457f779"
+                }
+            ],
+            "abi": [
+                {
+                    "type": "function",
+                    "name": "CONFIGURATOR_ROLE",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "CORK_POOL_MANAGER",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address",
+                            "internalType": "contract IPoolManager"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "DEFAULT_ADMIN_ROLE",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "PAUSER_ROLE",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "POOL_CREATOR_ROLE",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "UNPAUSER_ROLE",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "WHITELIST_ADDER_ROLE",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "WHITELIST_MANAGER",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address",
+                            "internalType": "contract IWhitelistManager"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "WHITELIST_REMOVER_ROLE",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "addToGlobalWhitelist",
+                    "inputs": [
+                        {
+                            "name": "accounts",
+                            "type": "address[]",
+                            "internalType": "address[]"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "addToMarketWhitelist",
+                    "inputs": [
+                        {
+                            "name": "marketId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "accounts",
+                            "type": "address[]",
+                            "internalType": "address[]"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "createNewPool",
+                    "inputs": [
+                        {
+                            "name": "params",
+                            "type": "tuple",
+                            "internalType": "struct IDefaultCorkController.PoolCreationParams",
+                            "components": [
+                                {
+                                    "name": "pool",
+                                    "type": "tuple",
+                                    "internalType": "struct Market",
+                                    "components": [
+                                        {
+                                            "name": "collateralAsset",
+                                            "type": "address",
+                                            "internalType": "address"
+                                        },
+                                        {
+                                            "name": "referenceAsset",
+                                            "type": "address",
+                                            "internalType": "address"
+                                        },
+                                        {
+                                            "name": "expiryTimestamp",
+                                            "type": "uint256",
+                                            "internalType": "uint256"
+                                        },
+                                        {
+                                            "name": "rateMin",
+                                            "type": "uint256",
+                                            "internalType": "uint256"
+                                        },
+                                        {
+                                            "name": "rateMax",
+                                            "type": "uint256",
+                                            "internalType": "uint256"
+                                        },
+                                        {
+                                            "name": "rateChangePerDayMax",
+                                            "type": "uint256",
+                                            "internalType": "uint256"
+                                        },
+                                        {
+                                            "name": "rateChangeCapacityMax",
+                                            "type": "uint256",
+                                            "internalType": "uint256"
+                                        },
+                                        {
+                                            "name": "rateOracle",
+                                            "type": "address",
+                                            "internalType": "address"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "unwindSwapFeePercentage",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "swapFeePercentage",
+                                    "type": "uint256",
+                                    "internalType": "uint256"
+                                },
+                                {
+                                    "name": "isWhitelistEnabled",
+                                    "type": "bool",
+                                    "internalType": "bool"
+                                }
+                            ]
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "disableMarketWhitelist",
+                    "inputs": [
+                        {
+                            "name": "marketId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "getRoleAdmin",
+                    "inputs": [
+                        {
+                            "name": "role",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "hasRole",
+                    "inputs": [
+                        {
+                            "name": "role",
+                            "type": "bytes32",
+                            "internalType": "bytes32"
+                        },
+                        {
+                            "name": "account",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "isDepositPaused",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "isPaused",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "isSwapPaused",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "isPaused",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "isUnwindDepositAndMintPaused",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "isPaused",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "isUnwindSwapPaused",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "isPaused",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "isWhitelisted",
+                    "inputs": [
+                        {
+                            "name": "marketId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "account",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "isWithdrawalPaused",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "isPaused",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "owner",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "pause",
+                    "inputs": [],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "pauseAll",
+                    "inputs": [],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "pauseDeposits",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "pauseMarket",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "pauseSwaps",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "pauseUnwindDepositAndMints",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "pauseUnwindSwaps",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "pauseWithdrawals",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "paused",
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "removeFromGlobalWhitelist",
+                    "inputs": [
+                        {
+                            "name": "accounts",
+                            "type": "address[]",
+                            "internalType": "address[]"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "removeFromMarketWhitelist",
+                    "inputs": [
+                        {
+                            "name": "marketId",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "accounts",
+                            "type": "address[]",
+                            "internalType": "address[]"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "renounceOwnership",
+                    "inputs": [],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "setOnceCorkPoolManager",
+                    "inputs": [
+                        {
+                            "name": "corkPoolManagerAddress",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "setSharesFactory",
+                    "inputs": [
+                        {
+                            "name": "sharesFactory",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "setTreasury",
+                    "inputs": [
+                        {
+                            "name": "treasuryAddress",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "supportsInterface",
+                    "inputs": [
+                        {
+                            "name": "interfaceId",
+                            "type": "bytes4",
+                            "internalType": "bytes4"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bool",
+                            "internalType": "bool"
+                        }
+                    ],
+                    "stateMutability": "view"
+                },
+                {
+                    "type": "function",
+                    "name": "transferOwnership",
+                    "inputs": [
+                        {
+                            "name": "newOwner",
+                            "type": "address",
+                            "internalType": "address"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unpause",
+                    "inputs": [],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unpauseAll",
+                    "inputs": [],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unpauseDeposits",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unpauseSwaps",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unpauseUnwindDepositAndMints",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unpauseUnwindSwaps",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "unpauseWithdrawals",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "updateSwapFeePercentage",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "newSwapFeePercentage",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                },
+                {
+                    "type": "function",
+                    "name": "updateUnwindSwapFeePercentage",
+                    "inputs": [
+                        {
+                            "name": "id",
+                            "type": "bytes32",
+                            "internalType": "MarketId"
+                        },
+                        {
+                            "name": "newUnwindSwapFeePercentage",
+                            "type": "uint256",
+                            "internalType": "uint256"
+                        }
+                    ],
+                    "outputs": [],
+                    "stateMutability": "nonpayable"
+                }
+            ]
+        }
+    },
+    "metadata": {
+        "owner": "Cork Protocol",
+        "info": {
+            "legalName": "Cork Protocol",
+            "url": "https://www.cork.tech/"
+        }
+    },
+    "display": {
+        "formats": {
+            "addToGlobalWhitelist(address[])": {
+                "intent": "Add addresses to the global whitelist",
+                "fields": [
+                    {
+                        "label": "Accounts",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "wallet",
+                                "eoa",
+                                "contract"
+                            ]
+                        },
+                        "path": "#.accounts.[]"
+                    }
+                ],
+                "required": [
+                    "#.accounts.[]"
+                ]
+            },
+            "addToMarketWhitelist(bytes32,address[])": {
+                "intent": "Add addresses to a market's whitelist",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.marketId"
+                    },
+                    {
+                        "label": "Accounts",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.accounts.[]"
+                    }
+                ],
+                "required": [
+                    "#.marketId",
+                    "#.accounts.[]"
+                ]
+            },
+            "createNewPool(((address,address,uint256,uint256,uint256,uint256,uint256,address),uint256,uint256,bool))": {
+                "intent": "Create a new market",
+                "fields": [
+                    {
+                        "path": "#.params",
+                        "fields": [
+                            {
+                                "path": "pool",
+                                "fields": [
+                                    {
+                                        "label": "Collateral asset",
+                                        "format": "addressName",
+                                        "params": {
+                                            "types": [
+                                                "token"
+                                            ]
+                                        },
+                                        "path": "collateralAsset"
+                                    },
+                                    {
+                                        "label": "Reference asset",
+                                        "format": "addressName",
+                                        "params": {
+                                            "types": [
+                                                "token"
+                                            ]
+                                        },
+                                        "path": "referenceAsset"
+                                    },
+                                    {
+                                        "label": "Expiry timestamp",
+                                        "format": "date",
+                                        "params": {
+                                            "encoding": "timestamp"
+                                        },
+                                        "path": "expiryTimestamp"
+                                    },
+                                    {
+                                        "label": "Lower rate cap",
+                                        "format": "raw",
+                                        "path": "rateMin"
+                                    },
+                                    {
+                                        "label": "Upper rate cap",
+                                        "format": "raw",
+                                        "path": "rateMax"
+                                    },
+                                    {
+                                        "label": "Daily rate change allowed",
+                                        "format": "raw",
+                                        "path": "rateChangePerDayMax"
+                                    },
+                                    {
+                                        "label": "Maximum one-time rate change",
+                                        "format": "raw",
+                                        "path": "rateChangeCapacityMax"
+                                    },
+                                    {
+                                        "label": "Rate oracle address",
+                                        "format": "addressName",
+                                        "params": {
+                                            "types": [
+                                                "contract"
+                                            ]
+                                        },
+                                        "path": "rateOracle"
+                                    }
+                                ]
+                            },
+                            {
+                                "label": "Repurchase fee percentage",
+                                "format": "raw",
+                                "path": "unwindSwapFeePercentage"
+                            },
+                            {
+                                "label": "Swap and exercise fee percentage",
+                                "format": "raw",
+                                "path": "swapFeePercentage"
+                            },
+                            {
+                                "label": "Enable whitelist",
+                                "format": "raw",
+                                "path": "isWhitelistEnabled"
+                            }
+                        ]
+                    }
+                ],
+                "required": [
+                    "#.params.pool.collateralAsset",
+                    "#.params.pool.referenceAsset",
+                    "#.params.pool.expiryTimestamp",
+                    "#.params.pool.rateMin",
+                    "#.params.pool.rateMax",
+                    "#.params.pool.rateChangePerDayMax",
+                    "#.params.pool.rateChangeCapacityMax",
+                    "#.params.pool.rateOracle",
+                    "#.params.unwindSwapFeePercentage",
+                    "#.params.swapFeePercentage",
+                    "#.params.isWhitelistEnabled"
+                ]
+            },
+            "disableMarketWhitelist(bytes32)": {
+                "intent": "Disable market whitelist",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.marketId"
+                    }
+                ],
+                "required": [
+                    "#.marketId"
+                ]
+            },
+            "pause()": {
+                "intent": "Pause market creation",
+                "fields": []
+            },
+            "pauseAll()": {
+                "intent": "Pause all Cork Pool Manager functionality",
+                "fields": []
+            },
+            "pauseDeposits(bytes32)": {
+                "intent": "Pause deposit (one market)",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    }
+                ],
+                "required": [
+                    "#.id"
+                ]
+            },
+            "pauseMarket(bytes32)": {
+                "intent": "Pause market (one market, all operations)",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    }
+                ],
+                "required": [
+                    "#.id"
+                ]
+            },
+            "pauseSwaps(bytes32)": {
+                "intent": "Pause swap and exercise (one market)",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    }
+                ],
+                "required": [
+                    "#.id"
+                ]
+            },
+            "pauseUnwindDepositAndMints(bytes32)": {
+                "intent": "Pause unwind mint and unwind deposit (one market)",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    }
+                ],
+                "required": [
+                    "#.id"
+                ]
+            },
+            "pauseUnwindSwaps(bytes32)": {
+                "intent": "Pause repurchase (one market)",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    }
+                ],
+                "required": [
+                    "#.id"
+                ]
+            },
+            "pauseWithdrawals(bytes32)": {
+                "intent": "Pause withdrawals (one market)",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    }
+                ],
+                "required": [
+                    "#.id"
+                ]
+            },
+            "removeFromGlobalWhitelist(address[])": {
+                "intent": "Remove addresses from global whitelist",
+                "fields": [
+                    {
+                        "label": "Accounts",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet",
+                                "contract"
+                            ]
+                        },
+                        "path": "#.accounts.[]"
+                    }
+                ],
+                "required": [
+                    "#.accounts.[]"
+                ]
+            },
+            "removeFromMarketWhitelist(bytes32,address[])": {
+                "intent": "Remove addresses from market whitelist",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.marketId"
+                    },
+                    {
+                        "label": "Accounts",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "eoa",
+                                "wallet",
+                                "contract"
+                            ]
+                        },
+                        "path": "#.accounts.[]"
+                    }
+                ],
+                "required": [
+                    "#.marketId",
+                    "#.accounts.[]"
+                ]
+            },
+            "setOnceCorkPoolManager(address)": {
+                "intent": "Set Cork Pool Manager address",
+                "fields": [
+                    {
+                        "label": "Cork Pool Manager address",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "contract"
+                            ]
+                        },
+                        "path": "#.corkPoolManagerAddress"
+                    }
+                ],
+                "required": [
+                    "#.corkPoolManagerAddress"
+                ]
+            },
+            "setSharesFactory(address)": {
+                "intent": "Set shares factory address",
+                "fields": [
+                    {
+                        "label": "Shares factory address",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "contract"
+                            ]
+                        },
+                        "path": "#.sharesFactory"
+                    }
+                ],
+                "required": [
+                    "#.sharesFactory"
+                ]
+            },
+            "setTreasury(address)": {
+                "intent": "Set treasury address",
+                "fields": [
+                    {
+                        "label": "Treasury address",
+                        "format": "addressName",
+                        "params": {
+                            "types": [
+                                "contract",
+                                "eoa",
+                                "wallet"
+                            ]
+                        },
+                        "path": "#.treasuryAddress"
+                    }
+                ],
+                "required": [
+                    "#.treasuryAddress"
+                ]
+            },
+            "unpause()": {
+                "intent": "Unpause market creation",
+                "fields": []
+            },
+            "unpauseAll()": {
+                "intent": "Unpause all Cork Pool Manager functionality",
+                "fields": []
+            },
+            "unpauseDeposits(bytes32)": {
+                "intent": "Unpause deposit (one market)",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    }
+                ],
+                "required": [
+                    "#.id"
+                ]
+            },
+            "unpauseSwaps(bytes32)": {
+                "intent": "Unpause swap and exercise (one market)",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    }
+                ],
+                "required": [
+                    "#.id"
+                ]
+            },
+            "unpauseUnwindDepositAndMints(bytes32)": {
+                "intent": "Unpause unwind mint and unwind deposit (one market)",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    }
+                ],
+                "required": [
+                    "#.id"
+                ]
+            },
+            "unpauseUnwindSwaps(bytes32)": {
+                "intent": "Unpause repurchase (one market)",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    }
+                ],
+                "required": [
+                    "#.id"
+                ]
+            },
+            "unpauseWithdrawals(bytes32)": {
+                "intent": "Unpause withdrawal (one market)",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    }
+                ],
+                "required": [
+                    "#.id"
+                ]
+            },
+            "updateSwapFeePercentage(bytes32,uint256)": {
+                "intent": "Update swap and exercise fee",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    },
+                    {
+                        "label": "New swap fee percentage",
+                        "format": "raw",
+                        "path": "#.newSwapFeePercentage"
+                    }
+                ],
+                "required": [
+                    "#.id",
+                    "#.newSwapFeePercentage"
+                ]
+            },
+            "updateUnwindSwapFeePercentage(bytes32,uint256)": {
+                "intent": "Update base repurchase fee",
+                "fields": [
+                    {
+                        "label": "Market ID",
+                        "format": "raw",
+                        "path": "#.id"
+                    },
+                    {
+                        "label": "New unwind swap fee percentage",
+                        "format": "raw",
+                        "path": "#.newUnwindSwapFeePercentage"
+                    }
+                ],
+                "required": [
+                    "#.id",
+                    "#.newUnwindSwapFeePercentage"
+                ]
+            }
+        }
+    }
+}
