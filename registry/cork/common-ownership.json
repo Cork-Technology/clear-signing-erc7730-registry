@@ -1,0 +1,64 @@
+{
+    "$schema": "../../specs/erc7730-v1.schema.json",
+    "context": {
+        "$id": "OpenZeppelin Ownable",
+        "contract": {
+            "abi": [
+                { "type": "function", "name": "transferOwnership", "inputs": [{"name":"newOwner","type":"address"}], "outputs": [], "stateMutability": "nonpayable" },
+                { "type": "function", "name": "renounceOwnership", "inputs": [], "outputs": [], "stateMutability": "nonpayable" },
+                { "type": "function", "name": "upgradeToAndCall", "inputs": [{"name":"newImplementation","type":"address"},{"name":"data","type":"bytes"}], "outputs": [], "stateMutability": "payable" },
+                { "type": "function", "name": "grantRole", "inputs": [{"name":"role","type":"bytes32"},{"name":"account","type":"address"}], "outputs": [], "stateMutability": "nonpayable" },
+                { "type": "function", "name": "revokeRole", "inputs": [{"name":"role","type":"bytes32"},{"name":"account","type":"address"}], "outputs": [], "stateMutability": "nonpayable" },
+                { "type": "function", "name": "renounceRole", "inputs": [{"name":"role","type":"bytes32"},{"name":"callerConfirmation","type":"address"}], "outputs": [], "stateMutability": "nonpayable" }
+            ]
+        }
+    },
+    "metadata": { "owner": "OpenZeppelin" },
+    "display": {
+        "formats": {
+            "transferOwnership(address)": {
+                "intent": "Transfer ownership",
+                "fields": [
+                    { "label": "New owner", "format": "addressName", "params": { "types": ["eoa","wallet"] }, "path": "#.newOwner" }
+                ],
+                "required": ["#.newOwner"]
+            },
+            "renounceOwnership()": {
+                "intent": "Renounce ownership",
+                "fields": []
+            },
+            "upgradeToAndCall(address,bytes)": {
+                "intent": "Upgrade contract",
+                "fields": [
+                    { "label": "New implementation", "format": "addressName", "params": { "types": ["wallet","eoa","contract","token","collection"] }, "path": "#.newImplementation" },
+                    { "label": "Data", "format": "raw", "path": "#.data" }
+                ],
+                "required": ["#.newImplementation", "#.data"]
+            },
+            "grantRole(bytes32,address)": {
+                "intent": "Grant role",
+                "fields": [
+                    { "label": "Role", "format": "raw", "path": "#.role" },
+                    { "label": "Account", "format": "addressName", "params": { "types": ["eoa","wallet"] }, "path": "#.account" }
+                ],
+                "required": ["#.role","#.account"]
+            },
+            "revokeRole(bytes32,address)": {
+                "intent": "Revoke role",
+                "fields": [
+                    { "label": "Role", "format": "raw", "path": "#.role" },
+                    { "label": "Account", "format": "addressName", "params": { "types": ["eoa","wallet"] }, "path": "#.account" }
+                ],
+                "required": ["#.role","#.account"]
+            },
+            "renounceRole(bytes32,address)": {
+                "intent": "Renounce role",
+                "fields": [
+                    { "label": "Role", "format": "raw", "path": "#.role" },
+                    { "label": "Caller confirmation", "format": "addressName", "params": { "types": ["wallet","eoa","contract","token","collection"] }, "path": "#.callerConfirmation" }
+                ],
+                "required": ["#.role","#.callerConfirmation"]
+            }
+        }
+    }
+}

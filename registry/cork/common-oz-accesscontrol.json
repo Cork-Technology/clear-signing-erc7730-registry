@@ -1,0 +1,41 @@
+{
+    "context": {
+        "$id": "OpenZeppelin Access Control",
+        "contract": {
+            "abi": [
+                { "type": "function", "name": "grantRole", "inputs": [{"name":"role","type":"bytes32"},{"name":"account","type":"address"}], "outputs": [], "stateMutability": "nonpayable" },
+                { "type": "function", "name": "revokeRole", "inputs": [{"name":"role","type":"bytes32"},{"name":"account","type":"address"}], "outputs": [], "stateMutability": "nonpayable" },
+                { "type": "function", "name": "renounceRole", "inputs": [{"name":"role","type":"bytes32"},{"name":"callerConfirmation","type":"address"}], "outputs": [], "stateMutability": "nonpayable" }
+            ]
+        }
+    },
+    "metadata": { "owner": "OpenZeppelin" },
+    "display": {
+        "formats": {
+            "grantRole(bytes32,address)": {
+                "intent": "Grant role",
+                "fields": [
+                    { "label": "Role", "format": "raw", "path": "#.role" },
+                    { "label": "Account", "format": "addressName", "params": { "types": ["eoa","wallet"] }, "path": "#.account" }
+                ],
+                "required": ["#.role", "#.account"]
+            },
+            "revokeRole(bytes32,address)": {
+                "intent": "Revoke role",
+                "fields": [
+                    { "label": "Role", "format": "raw", "path": "#.role" },
+                    { "label": "Account", "format": "addressName", "params": { "types": ["eoa","wallet"] }, "path": "#.account" }
+                ],
+                "required": ["#.role", "#.account"]
+            },
+            "renounceRole(bytes32,address)": {
+                "intent": "Renounce role",
+                "fields": [
+                    { "label": "Role", "format": "raw", "path": "#.role" },
+                    { "label": "Caller confirmation", "format": "addressName", "params": { "types": ["wallet","eoa","contract","token","collection"] }, "path": "#.callerConfirmation" }
+                ],
+                "required": ["#.role", "#.callerConfirmation"]
+            }
+        }
+    }
+}
