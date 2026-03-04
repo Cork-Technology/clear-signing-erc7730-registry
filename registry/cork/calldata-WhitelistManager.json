@@ -1,4 +1,6 @@
 {
+    "$schema": "../../specs/erc7730-v1.schema.json",
+    "includes": "common-ownership.json",
     "context": {
         "$id": "WhitelistManager",
         "contract": {
@@ -136,24 +138,6 @@
                         }
                     ],
                     "stateMutability": "view"
-                },
-                {
-                    "type": "function",
-                    "name": "grantRole",
-                    "inputs": [
-                        {
-                            "name": "role",
-                            "type": "bytes32",
-                            "internalType": "bytes32"
-                        },
-                        {
-                            "name": "account",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
                 },
                 {
                     "type": "function",
@@ -349,42 +333,6 @@
                 },
                 {
                     "type": "function",
-                    "name": "renounceRole",
-                    "inputs": [
-                        {
-                            "name": "role",
-                            "type": "bytes32",
-                            "internalType": "bytes32"
-                        },
-                        {
-                            "name": "callerConfirmation",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
-                    "name": "revokeRole",
-                    "inputs": [
-                        {
-                            "name": "role",
-                            "type": "bytes32",
-                            "internalType": "bytes32"
-                        },
-                        {
-                            "name": "account",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
                     "name": "setOnceCorkPoolManager",
                     "inputs": [
                         {
@@ -458,136 +406,11 @@
     },
     "display": {
         "formats": {
-            "grantRole(bytes32,address)": {
-                "intent": "grant role",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Account",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.account"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.account"
-                ]
-            },
-            "renounceRole(bytes32,address)": {
-                "intent": "renounce role",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Caller Confirmation",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "wallet",
-                                "eoa",
-                                "contract",
-                                "token",
-                                "collection"
-                            ]
-                        },
-                        "path": "#.callerConfirmation"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.callerConfirmation"
-                ]
-            },
-            "revokeRole(bytes32,address)": {
-                "intent": "revoke role",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Account",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.account"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.account"
-                ]
-            },
-            "transferOwnership(address)": {
-                "intent": "transfer ownership",
-                "fields": [
-                    {
-                        "label": "New Owner",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.newOwner"
-                    }
-                ],
-                "required": [
-                    "#.newOwner"
-                ]
-            },
-            "upgradeToAndCall(address,bytes)": {
-                "intent": "upgrade contract",
-                "fields": [
-                    {
-                        "label": "New Implementation",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "wallet",
-                                "eoa",
-                                "contract",
-                                "token",
-                                "collection"
-                            ]
-                        },
-                        "path": "#.newImplementation"
-                    },
-                    {
-                        "label": "Data",
-                        "format": "raw",
-                        "path": "#.data"
-                    }
-                ],
-                "required": [
-                    "#.newImplementation",
-                    "#.data"
-                ]
-            },
             "activateMarketWhitelist(bytes32)": {
-                "intent": "activate market whitelist",
+                "intent": "Activate market whitelist",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.marketId"
                     }
@@ -597,7 +420,7 @@
                 ]
             },
             "addToGlobalWhitelist(address[])": {
-                "intent": "add addresses to global whitelist",
+                "intent": "Add addresses to global whitelist",
                 "fields": [
                     {
                         "label": "Accounts",
@@ -616,10 +439,10 @@
                 ]
             },
             "addToMarketWhitelist(bytes32,address[])": {
-                "intent": "add addresses to market whitelist",
+                "intent": "Add addresses to market whitelist",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.marketId"
                     },
@@ -641,10 +464,10 @@
                 ]
             },
             "disableMarketWhitelist(bytes32)": {
-                "intent": "disable market whitelist",
+                "intent": "Disable market whitelist",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.marketId"
                     }
@@ -654,10 +477,10 @@
                 ]
             },
             "initialize(address,address)": {
-                "intent": "initialize contract",
+                "intent": "Initialize contract",
                 "fields": [
                     {
-                        "label": "Ens Owner",
+                        "label": "ENS owner",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -688,7 +511,7 @@
                 ]
             },
             "removeFromGlobalWhitelist(address[])": {
-                "intent": "remove addresses from global whitelist",
+                "intent": "Remove addresses from global whitelist",
                 "fields": [
                     {
                         "label": "Accounts",
@@ -707,10 +530,10 @@
                 ]
             },
             "removeFromMarketWhitelist(bytes32,address[])": {
-                "intent": "remove addresses from market whitelist",
+                "intent": "Remove addresses from market whitelist",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.marketId"
                     },

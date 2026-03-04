@@ -1,4 +1,6 @@
 {
+    "$schema": "../../specs/erc7730-v1.schema.json",
+    "includes": "common-ownership.json",
     "context": {
         "$id": "Constraint Rate Adapter",
         "contract": {
@@ -130,24 +132,6 @@
                 },
                 {
                     "type": "function",
-                    "name": "grantRole",
-                    "inputs": [
-                        {
-                            "name": "role",
-                            "type": "bytes32",
-                            "internalType": "bytes32"
-                        },
-                        {
-                            "name": "account",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
                     "name": "hasRole",
                     "inputs": [
                         {
@@ -242,42 +226,6 @@
                 },
                 {
                     "type": "function",
-                    "name": "renounceRole",
-                    "inputs": [
-                        {
-                            "name": "role",
-                            "type": "bytes32",
-                            "internalType": "bytes32"
-                        },
-                        {
-                            "name": "callerConfirmation",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
-                    "name": "revokeRole",
-                    "inputs": [
-                        {
-                            "name": "role",
-                            "type": "bytes32",
-                            "internalType": "bytes32"
-                        },
-                        {
-                            "name": "account",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
                     "name": "setOnceCorkPoolManager",
                     "inputs": [
                         {
@@ -351,149 +299,11 @@
     },
     "display": {
         "formats": {
-            "assets(bytes32)": {
-                "intent": "get collateral and reference assets",
-                "fields": [
-                    {
-                        "label": "Pool Id",
-                        "format": "raw",
-                        "path": "#.poolId"
-                    }
-                ],
-                "required": [
-                    "#.poolId"
-                ]
-            },
-            "grantRole(bytes32,address)": {
-                "intent": "grant role",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Account",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.account"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.account"
-                ]
-            },
-            "renounceRole(bytes32,address)": {
-                "intent": "renounce role",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Caller Confirmation",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "wallet",
-                                "eoa",
-                                "contract",
-                                "token",
-                                "collection"
-                            ]
-                        },
-                        "path": "#.callerConfirmation"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.callerConfirmation"
-                ]
-            },
-            "revokeRole(bytes32,address)": {
-                "intent": "revoke role",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Account",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.account"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.account"
-                ]
-            },
-            "transferOwnership(address)": {
-                "intent": "transfer ownership",
-                "fields": [
-                    {
-                        "label": "New Owner",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.newOwner"
-                    }
-                ],
-                "required": [
-                    "#.newOwner"
-                ]
-            },
-            "upgradeToAndCall(address,bytes)": {
-                "intent": "upgrade contract",
-                "fields": [
-                    {
-                        "label": "New Implementation",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "wallet",
-                                "eoa",
-                                "contract",
-                                "token",
-                                "collection"
-                            ]
-                        },
-                        "path": "#.newImplementation"
-                    },
-                    {
-                        "label": "Data",
-                        "format": "raw",
-                        "path": "#.data"
-                    }
-                ],
-                "required": [
-                    "#.newImplementation",
-                    "#.data"
-                ]
-            },
             "initialize(address,address)": {
-                "intent": "initialize contract",
+                "intent": "Initialize contract",
                 "fields": [
                     {
-                        "label": "Ens Owner",
+                        "label": "ENS owner",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -515,7 +325,7 @@
                                 "collection"
                             ]
                         },
-                        "path": "#.admin"
+                        "path": "#.upgradeAdmin"
                     }
                 ],
                 "required": [

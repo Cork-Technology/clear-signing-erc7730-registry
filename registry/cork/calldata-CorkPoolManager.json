@@ -1,4 +1,6 @@
 {
+    "$schema": "../../specs/erc7730-v1.schema.json",
+    "includes": "common-ownership.json",
     "context": {
         "$id": "CorkPoolManager",
         "contract": {
@@ -394,24 +396,6 @@
                         }
                     ],
                     "stateMutability": "view"
-                },
-                {
-                    "type": "function",
-                    "name": "grantRole",
-                    "inputs": [
-                        {
-                            "name": "role",
-                            "type": "bytes32",
-                            "internalType": "bytes32"
-                        },
-                        {
-                            "name": "account",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
                 },
                 {
                     "type": "function",
@@ -1356,42 +1340,6 @@
                 },
                 {
                     "type": "function",
-                    "name": "renounceRole",
-                    "inputs": [
-                        {
-                            "name": "role",
-                            "type": "bytes32",
-                            "internalType": "bytes32"
-                        },
-                        {
-                            "name": "callerConfirmation",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
-                    "name": "revokeRole",
-                    "inputs": [
-                        {
-                            "name": "role",
-                            "type": "bytes32",
-                            "internalType": "bytes32"
-                        },
-                        {
-                            "name": "account",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
                     "name": "setAllPaused",
                     "inputs": [
                         {
@@ -1938,27 +1886,14 @@
     },
     "display": {
         "formats": {
-            "assets(bytes32)": {
-                "intent": "get collateral and reference assets",
-                "fields": [
-                    {
-                        "label": "Pool Id",
-                        "format": "raw",
-                        "path": "#.poolId"
-                    }
-                ],
-                "required": [
-                    "#.poolId"
-                ]
-            },
             "createNewPool((address,address,uint256,uint256,uint256,uint256,uint256,address))": {
-                "intent": "create new pool",
+                "intent": "Create new pool",
                 "fields": [
                     {
                         "path": "#.poolParams",
                         "fields": [
                             {
-                                "label": "Collateral Asset",
+                                "label": "Collateral asset",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -1968,7 +1903,7 @@
                                 "path": "collateralAsset"
                             },
                             {
-                                "label": "Reference Asset",
+                                "label": "Reference asset",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -1978,7 +1913,7 @@
                                 "path": "referenceAsset"
                             },
                             {
-                                "label": "Expiry Timestamp",
+                                "label": "Expiry timestamp",
                                 "format": "date",
                                 "params": {
                                     "encoding": "timestamp"
@@ -1986,27 +1921,27 @@
                                 "path": "expiryTimestamp"
                             },
                             {
-                                "label": "Rate Min",
+                                "label": "Rate minimum",
                                 "format": "raw",
                                 "path": "rateMin"
                             },
                             {
-                                "label": "Rate Max",
+                                "label": "Rate maximum",
                                 "format": "raw",
                                 "path": "rateMax"
                             },
                             {
-                                "label": "Rate Change Per Day Max",
+                                "label": "Rate change per day maximum",
                                 "format": "raw",
                                 "path": "rateChangePerDayMax"
                             },
                             {
-                                "label": "Rate Change Capacity Max",
+                                "label": "Rate change capacity maximum",
                                 "format": "raw",
                                 "path": "rateChangeCapacityMax"
                             },
                             {
-                                "label": "Rate Oracle",
+                                "label": "Rate oracle",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -2034,15 +1969,15 @@
                 ]
             },
             "deposit(bytes32,uint256,address)": {
-                "intent": "deposit",
+                "intent": "Deposit",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Collateral Assets In",
+                        "label": "Collateral assets to deposit",
                         "format": "raw",
                         "path": "#.collateralAssetsIn"
                     },
@@ -2065,15 +2000,15 @@
                 ]
             },
             "exercise(bytes32,uint256,address)": {
-                "intent": "exercise",
+                "intent": "Exercise",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Cst Shares In",
+                        "label": "cST shares to exercise",
                         "format": "raw",
                         "path": "#.cstSharesIn"
                     },
@@ -2096,15 +2031,15 @@
                 ]
             },
             "exerciseOther(bytes32,uint256,address)": {
-                "intent": "exercise",
+                "intent": "Exercise",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Reference Assets In",
+                        "label": "Reference assets to exercise",
                         "format": "raw",
                         "path": "#.referenceAssetsIn"
                     },
@@ -2126,41 +2061,16 @@
                     "#.receiver"
                 ]
             },
-            "grantRole(bytes32,address)": {
-                "intent": "grant role",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Account",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.account"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.account"
-                ]
-            },
             "redeem(bytes32,uint256,address,address)": {
-                "intent": "withdraw",
+                "intent": "Withdraw",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Cpt Shares In",
+                        "label": "cPT shares to redeem",
                         "format": "raw",
                         "path": "#.cptSharesIn"
                     },
@@ -2194,69 +2104,16 @@
                     "#.receiver"
                 ]
             },
-            "renounceRole(bytes32,address)": {
-                "intent": "renounce role",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Caller Confirmation",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "wallet",
-                                "eoa",
-                                "contract",
-                                "token",
-                                "collection"
-                            ]
-                        },
-                        "path": "#.callerConfirmation"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.callerConfirmation"
-                ]
-            },
-            "revokeRole(bytes32,address)": {
-                "intent": "revoke role",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Account",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.account"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.account"
-                ]
-            },
             "swap(bytes32,uint256,address)": {
-                "intent": "exercise",
+                "intent": "Exercise",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Collateral Assets Out",
+                        "label": "Collateral assets out",
                         "format": "raw",
                         "path": "#.collateralAssetsOut"
                     },
@@ -2278,35 +2135,16 @@
                     "#.receiver"
                 ]
             },
-            "transferOwnership(address)": {
-                "intent": "transfer ownership",
-                "fields": [
-                    {
-                        "label": "New Owner",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.newOwner"
-                    }
-                ],
-                "required": [
-                    "#.newOwner"
-                ]
-            },
             "unwindDeposit(bytes32,uint256,address,address)": {
-                "intent": "unwind deposit",
+                "intent": "Unwind deposit",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Collateral Assets Out",
+                        "label": "Collateral assets out",
                         "format": "raw",
                         "path": "#.collateralAssetsOut"
                     },
@@ -2341,15 +2179,15 @@
                 ]
             },
             "unwindExercise(bytes32,uint256,address)": {
-                "intent": "repurchase",
+                "intent": "Repurchase",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Cst Shares Out",
+                        "label": "cST shares out",
                         "format": "raw",
                         "path": "#.cstSharesOut"
                     },
@@ -2372,15 +2210,15 @@
                 ]
             },
             "unwindExerciseOther(bytes32,uint256,address)": {
-                "intent": "repurchase",
+                "intent": "Repurchase",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Reference Assets Out",
+                        "label": "Reference assets out",
                         "format": "raw",
                         "path": "#.referenceAssetsOut"
                     },
@@ -2403,15 +2241,15 @@
                 ]
             },
             "unwindMint(bytes32,uint256,address,address)": {
-                "intent": "unwind deposit",
+                "intent": "Unwind deposit",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Cpt And Cst Shares In",
+                        "label": "cPT and cST shares to burn",
                         "format": "raw",
                         "path": "#.cptAndCstSharesIn"
                     },
@@ -2446,15 +2284,15 @@
                 ]
             },
             "unwindSwap(bytes32,uint256,address)": {
-                "intent": "repurchase",
+                "intent": "Repurchase",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Collateral Assets In",
+                        "label": "Collateral assets to repurchase",
                         "format": "raw",
                         "path": "#.collateralAssetsIn"
                     },
@@ -2476,44 +2314,16 @@
                     "#.receiver"
                 ]
             },
-            "upgradeToAndCall(address,bytes)": {
-                "intent": "upgrade contract",
-                "fields": [
-                    {
-                        "label": "New Implementation",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "wallet",
-                                "eoa",
-                                "contract",
-                                "token",
-                                "collection"
-                            ]
-                        },
-                        "path": "#.newImplementation"
-                    },
-                    {
-                        "label": "Data",
-                        "format": "raw",
-                        "path": "#.data"
-                    }
-                ],
-                "required": [
-                    "#.newImplementation",
-                    "#.data"
-                ]
-            },
             "withdraw(bytes32,uint256,address,address)": {
-                "intent": "withdraw",
+                "intent": "Withdraw",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Collateral Assets Out",
+                        "label": "Collateral assets out",
                         "format": "raw",
                         "path": "#.collateralAssetsOut"
                     },
@@ -2548,15 +2358,15 @@
                 ]
             },
             "withdrawOther(bytes32,uint256,address,address)": {
-                "intent": "withdraw",
+                "intent": "Withdraw",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Reference Assets Out",
+                        "label": "Reference assets out",
                         "format": "raw",
                         "path": "#.referenceAssetsOut"
                     },
@@ -2591,15 +2401,15 @@
                 ]
             },
             "mint(bytes32,uint256,address)": {
-                "intent": "deposit",
+                "intent": "Deposit",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "Cpt And Cst Shares Out",
+                        "label": "cPT and cST shares out",
                         "format": "raw",
                         "path": "#.cptAndCstSharesOut"
                     },
@@ -2622,10 +2432,10 @@
                 ]
             },
             "setAllPaused(bool)": {
-                "intent": "pause all market",
+                "intent": "Pause all market",
                 "fields": [
                     {
-                        "label": "Is All Paused",
+                        "label": "Is all paused",
                         "format": "raw",
                         "path": "#.isAllPaused"
                     }
@@ -2635,15 +2445,15 @@
                 ]
             },
             "setPausedBitMap(bytes32,uint16)": {
-                "intent": "pause",
+                "intent": "Pause",
                 "fields": [
                     {
-                        "label": "Pool Id",
+                        "label": "Pool ID",
                         "format": "raw",
                         "path": "#.poolId"
                     },
                     {
-                        "label": "New Pause Bit Map",
+                        "label": "New pause bit map",
                         "format": "raw",
                         "path": "#.newPauseBitMap"
                     }
@@ -2654,10 +2464,10 @@
                 ]
             },
             "initialize(address,address,address,address,address)": {
-                "intent": "initialize",
+                "intent": "Initialize",
                 "fields": [
                     {
-                        "label": "Ens Owner",
+                        "label": "ENS owner",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -2682,7 +2492,7 @@
                         "path": "#.admin"
                     },
                     {
-                        "label": "Constraint Rate Adapter",
+                        "label": "Constraint rate adapter",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -2710,7 +2520,7 @@
                         "path": "#.treasury"
                     },
                     {
-                        "label": "Whitelist Manager",
+                        "label": "Whitelist manager",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -2733,10 +2543,10 @@
                 ]
             },
             "setSharesFactory(address)": {
-                "intent": "set shares factory address",
+                "intent": "Set shares factory address",
                 "fields": [
                     {
-                        "label": "New Shares Factory",
+                        "label": "New shares factory",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -2752,10 +2562,10 @@
                 ]
             },
             "setTreasuryAddress(address)": {
-                "intent": "set treasury address",
+                "intent": "Set treasury address",
                 "fields": [
                     {
-                        "label": "New Treasury",
+                        "label": "New treasury",
                         "format": "addressName",
                         "params": {
                             "types": [

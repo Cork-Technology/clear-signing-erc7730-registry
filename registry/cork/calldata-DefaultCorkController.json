@@ -1,4 +1,6 @@
 {
+    "$schema": "../../specs/erc7730-v1.schema.json",
+    "includes": "common-ownership.json",
     "context": {
         "$id": "DefaultCorkController",
         "contract": {
@@ -265,24 +267,6 @@
                         }
                     ],
                     "stateMutability": "view"
-                },
-                {
-                    "type": "function",
-                    "name": "grantRole",
-                    "inputs": [
-                        {
-                            "name": "role",
-                            "type": "bytes32",
-                            "internalType": "bytes32"
-                        },
-                        {
-                            "name": "account",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
                 },
                 {
                     "type": "function",
@@ -585,42 +569,6 @@
                 },
                 {
                     "type": "function",
-                    "name": "renounceRole",
-                    "inputs": [
-                        {
-                            "name": "role",
-                            "type": "bytes32",
-                            "internalType": "bytes32"
-                        },
-                        {
-                            "name": "callerConfirmation",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
-                    "name": "revokeRole",
-                    "inputs": [
-                        {
-                            "name": "role",
-                            "type": "bytes32",
-                            "internalType": "bytes32"
-                        },
-                        {
-                            "name": "account",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
                     "name": "setOnceCorkPoolManager",
                     "inputs": [
                         {
@@ -811,14 +759,14 @@
     "metadata": {
         "owner": "Cork Protocol",
         "info": {
-            "legalName": "Cork",
+            "legalName": "Cork Protocol",
             "url": "https://www.cork.tech/"
         }
     },
     "display": {
         "formats": {
             "addToGlobalWhitelist(address[])": {
-                "intent": "add addresses to global whitelist",
+                "intent": "Add addresses to the global whitelist",
                 "fields": [
                     {
                         "label": "Accounts",
@@ -838,12 +786,11 @@
                 ]
             },
             "addToMarketWhitelist(bytes32,address[])": {
-                "intent": "add addresses to market whitelist",
+                "intent": "Add addresses to a market's whitelist",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
-                        "params": {},
                         "path": "#.marketId"
                     },
                     {
@@ -864,7 +811,7 @@
                 ]
             },
             "createNewPool(((address,address,uint256,uint256,uint256,uint256,uint256,address),uint256,uint256,bool))": {
-                "intent": "create new market",
+                "intent": "Create a new market",
                 "fields": [
                     {
                         "path": "#.params",
@@ -873,7 +820,7 @@
                                 "path": "pool",
                                 "fields": [
                                     {
-                                        "label": "Collateral Asset",
+                                        "label": "Collateral asset",
                                         "format": "addressName",
                                         "params": {
                                             "types": [
@@ -883,7 +830,7 @@
                                         "path": "collateralAsset"
                                     },
                                     {
-                                        "label": "Reference Asset",
+                                        "label": "Reference asset",
                                         "format": "addressName",
                                         "params": {
                                             "types": [
@@ -893,7 +840,7 @@
                                         "path": "referenceAsset"
                                     },
                                     {
-                                        "label": "Expiry Timestamp",
+                                        "label": "Expiry timestamp",
                                         "format": "date",
                                         "params": {
                                             "encoding": "timestamp"
@@ -901,50 +848,49 @@
                                         "path": "expiryTimestamp"
                                     },
                                     {
-                                        "label": "Lower Rate Cap",
+                                        "label": "Lower rate cap",
                                         "format": "raw",
                                         "path": "rateMin"
                                     },
                                     {
-                                        "label": "Upper Rate Cap",
+                                        "label": "Upper rate cap",
                                         "format": "raw",
                                         "path": "rateMax"
                                     },
                                     {
-                                        "label": "Daily Rate Change Allowance",
+                                        "label": "Daily rate change allowed",
                                         "format": "raw",
                                         "path": "rateChangePerDayMax"
                                     },
                                     {
-                                        "label": "Daily Rate Change Allowance Capacity",
+                                        "label": "Maximum one-time rate change",
                                         "format": "raw",
                                         "path": "rateChangeCapacityMax"
                                     },
                                     {
-                                        "label": "Rate Oracle Address",
+                                        "label": "Rate oracle address",
                                         "format": "addressName",
                                         "params": {
                                             "types": [
                                                 "contract"
-                                            ],
-                                            "sources": []
+                                            ]
                                         },
                                         "path": "rateOracle"
                                     }
                                 ]
                             },
                             {
-                                "label": "Repurchase Fee Percentage",
+                                "label": "Repurchase fee percentage",
                                 "format": "raw",
                                 "path": "unwindSwapFeePercentage"
                             },
                             {
-                                "label": "Swap & Exercise Fee Percentage",
+                                "label": "Swap and exercise fee percentage",
                                 "format": "raw",
                                 "path": "swapFeePercentage"
                             },
                             {
-                                "label": "Enable Whitelist",
+                                "label": "Enable whitelist",
                                 "format": "raw",
                                 "path": "isWhitelistEnabled"
                             }
@@ -966,10 +912,10 @@
                 ]
             },
             "disableMarketWhitelist(bytes32)": {
-                "intent": "disable market whitelist",
+                "intent": "Disable market whitelist",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.marketId"
                     }
@@ -978,38 +924,19 @@
                     "#.marketId"
                 ]
             },
-            "grantRole(bytes32,address)": {
-                "intent": "grant role ",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Account",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet",
-                                "contract"
-                            ],
-                            "sources": []
-                        },
-                        "path": "#.account"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.account"
-                ]
+            "pause()": {
+                "intent": "Pause market creation",
+                "fields": []
+            },
+            "pauseAll()": {
+                "intent": "Pause all Cork Pool Manager functionality",
+                "fields": []
             },
             "pauseDeposits(bytes32)": {
-                "intent": "pause deposit(one market)",
+                "intent": "Pause deposit (one market)",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     }
@@ -1019,10 +946,10 @@
                 ]
             },
             "pauseMarket(bytes32)": {
-                "intent": "pause market(one market, all operation)",
+                "intent": "Pause market (one market, all operations)",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     }
@@ -1032,10 +959,10 @@
                 ]
             },
             "pauseSwaps(bytes32)": {
-                "intent": "pause swap and exercise(one market)",
+                "intent": "Pause swap and exercise (one market)",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     }
@@ -1045,10 +972,10 @@
                 ]
             },
             "pauseUnwindDepositAndMints(bytes32)": {
-                "intent": "pause unwind mint and unwind deposit(one market)",
+                "intent": "Pause unwind mint and unwind deposit (one market)",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     }
@@ -1058,10 +985,10 @@
                 ]
             },
             "pauseUnwindSwaps(bytes32)": {
-                "intent": "pause repurchase(one market)",
+                "intent": "Pause repurchase (one market)",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     }
@@ -1071,10 +998,10 @@
                 ]
             },
             "pauseWithdrawals(bytes32)": {
-                "intent": "pause withdrawals(one market)",
+                "intent": "Pause withdrawals (one market)",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     }
@@ -1084,7 +1011,7 @@
                 ]
             },
             "removeFromGlobalWhitelist(address[])": {
-                "intent": "remove addresses from global whitelist",
+                "intent": "Remove addresses from global whitelist",
                 "fields": [
                     {
                         "label": "Accounts",
@@ -1104,10 +1031,10 @@
                 ]
             },
             "removeFromMarketWhitelist(bytes32,address[])": {
-                "intent": "remove addresses from market whitelist",
+                "intent": "Remove addresses from market whitelist",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.marketId"
                     },
@@ -1129,63 +1056,11 @@
                     "#.accounts.[]"
                 ]
             },
-            "renounceRole(bytes32,address)": {
-                "intent": "renounce role",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Caller Confirmation",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "wallet",
-                                "eoa",
-                                "contract"
-                            ]
-                        },
-                        "path": "#.callerConfirmation"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.callerConfirmation"
-                ]
-            },
-            "revokeRole(bytes32,address)": {
-                "intent": "revoke role",
-                "fields": [
-                    {
-                        "label": "Role",
-                        "format": "raw",
-                        "path": "#.role"
-                    },
-                    {
-                        "label": "Account",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet",
-                                "contract"
-                            ]
-                        },
-                        "path": "#.account"
-                    }
-                ],
-                "required": [
-                    "#.role",
-                    "#.account"
-                ]
-            },
             "setOnceCorkPoolManager(address)": {
-                "intent": "set cork pool manager address",
+                "intent": "Set Cork Pool Manager address",
                 "fields": [
                     {
-                        "label": "Cork Pool Manager Address",
+                        "label": "Cork Pool Manager address",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -1200,10 +1075,10 @@
                 ]
             },
             "setSharesFactory(address)": {
-                "intent": "set shares factory address",
+                "intent": "Set shares factory address",
                 "fields": [
                     {
-                        "label": "Shares Factory Address",
+                        "label": "Shares factory address",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -1218,10 +1093,10 @@
                 ]
             },
             "setTreasury(address)": {
-                "intent": "set treasury address",
+                "intent": "Set treasury address",
                 "fields": [
                     {
-                        "label": "Treasury Address",
+                        "label": "Treasury address",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -1237,31 +1112,19 @@
                     "#.treasuryAddress"
                 ]
             },
-            "transferOwnership(address)": {
-                "intent": "transfer contract ownership",
-                "fields": [
-                    {
-                        "label": "New Owner",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet",
-                                "contract"
-                            ]
-                        },
-                        "path": "#.newOwner"
-                    }
-                ],
-                "required": [
-                    "#.newOwner"
-                ]
+            "unpause()": {
+                "intent": "Unpause market creation",
+                "fields": []
+            },
+            "unpauseAll()": {
+                "intent": "Unpause all Cork Pool Manager functionality",
+                "fields": []
             },
             "unpauseDeposits(bytes32)": {
-                "intent": "unpause deposit(one market)",
+                "intent": "Unpause deposit (one market)",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     }
@@ -1271,10 +1134,10 @@
                 ]
             },
             "unpauseSwaps(bytes32)": {
-                "intent": "unpause swap & exercise(one market)",
+                "intent": "Unpause swap and exercise (one market)",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     }
@@ -1284,10 +1147,10 @@
                 ]
             },
             "unpauseUnwindDepositAndMints(bytes32)": {
-                "intent": "unpause unwind mint and unwind deposit(one market)",
+                "intent": "Unpause unwind mint and unwind deposit (one market)",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     }
@@ -1297,10 +1160,10 @@
                 ]
             },
             "unpauseUnwindSwaps(bytes32)": {
-                "intent": "unpause repurchase(one market)",
+                "intent": "Unpause repurchase (one market)",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     }
@@ -1310,10 +1173,10 @@
                 ]
             },
             "unpauseWithdrawals(bytes32)": {
-                "intent": "unpause withdrawal(one market)",
+                "intent": "Unpause withdrawal (one market)",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     }
@@ -1323,15 +1186,15 @@
                 ]
             },
             "updateSwapFeePercentage(bytes32,uint256)": {
-                "intent": "update swap & exercise fee",
+                "intent": "Update swap and exercise fee",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     },
                     {
-                        "label": "New Swap Fee Percentage",
+                        "label": "New swap fee percentage",
                         "format": "raw",
                         "path": "#.newSwapFeePercentage"
                     }
@@ -1342,15 +1205,15 @@
                 ]
             },
             "updateUnwindSwapFeePercentage(bytes32,uint256)": {
-                "intent": "update base repurchase fee",
+                "intent": "Update base repurchase fee",
                 "fields": [
                     {
-                        "label": "Market Id",
+                        "label": "Market ID",
                         "format": "raw",
                         "path": "#.id"
                     },
                     {
-                        "label": "New Unwind Swap Fee Percentage",
+                        "label": "New unwind swap fee percentage",
                         "format": "raw",
                         "path": "#.newUnwindSwapFeePercentage"
                     }

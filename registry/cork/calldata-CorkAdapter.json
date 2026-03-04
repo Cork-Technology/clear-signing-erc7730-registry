@@ -1,4 +1,6 @@
 {
+    "$schema": "../../specs/erc7730-v1.schema.json",
+    "includes": "common-ownership.json",
     "context": {
         "$id": "CorkAdapter",
         "contract": {
@@ -102,128 +104,6 @@
                             "name": "amount",
                             "type": "uint256",
                             "internalType": "uint256"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
-                    "name": "erc4626Deposit",
-                    "inputs": [
-                        {
-                            "name": "vault",
-                            "type": "address",
-                            "internalType": "address"
-                        },
-                        {
-                            "name": "assets",
-                            "type": "uint256",
-                            "internalType": "uint256"
-                        },
-                        {
-                            "name": "maxSharePriceE27",
-                            "type": "uint256",
-                            "internalType": "uint256"
-                        },
-                        {
-                            "name": "receiver",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
-                    "name": "erc4626Mint",
-                    "inputs": [
-                        {
-                            "name": "vault",
-                            "type": "address",
-                            "internalType": "address"
-                        },
-                        {
-                            "name": "shares",
-                            "type": "uint256",
-                            "internalType": "uint256"
-                        },
-                        {
-                            "name": "maxSharePriceE27",
-                            "type": "uint256",
-                            "internalType": "uint256"
-                        },
-                        {
-                            "name": "receiver",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
-                    "name": "erc4626Redeem",
-                    "inputs": [
-                        {
-                            "name": "vault",
-                            "type": "address",
-                            "internalType": "address"
-                        },
-                        {
-                            "name": "shares",
-                            "type": "uint256",
-                            "internalType": "uint256"
-                        },
-                        {
-                            "name": "minSharePriceE27",
-                            "type": "uint256",
-                            "internalType": "uint256"
-                        },
-                        {
-                            "name": "receiver",
-                            "type": "address",
-                            "internalType": "address"
-                        },
-                        {
-                            "name": "owner",
-                            "type": "address",
-                            "internalType": "address"
-                        }
-                    ],
-                    "outputs": [],
-                    "stateMutability": "nonpayable"
-                },
-                {
-                    "type": "function",
-                    "name": "erc4626Withdraw",
-                    "inputs": [
-                        {
-                            "name": "vault",
-                            "type": "address",
-                            "internalType": "address"
-                        },
-                        {
-                            "name": "assets",
-                            "type": "uint256",
-                            "internalType": "uint256"
-                        },
-                        {
-                            "name": "minSharePriceE27",
-                            "type": "uint256",
-                            "internalType": "uint256"
-                        },
-                        {
-                            "name": "receiver",
-                            "type": "address",
-                            "internalType": "address"
-                        },
-                        {
-                            "name": "owner",
-                            "type": "address",
-                            "internalType": "address"
                         }
                     ],
                     "outputs": [],
@@ -981,7 +861,7 @@
     "display": {
         "formats": {
             "erc20Transfer(address,address,uint256)": {
-                "intent": "transfer ERC20 from adapter",
+                "intent": "Transfer ERC20 from adapter",
                 "fields": [
                     {
                         "label": "Token",
@@ -994,7 +874,7 @@
                         "path": "#.token"
                     },
                     {
-                        "label": "Receiver",
+                        "label": "Receiver of token",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -1006,7 +886,10 @@
                     },
                     {
                         "label": "Amount",
-                        "format": "amount",
+                        "format": "tokenAmount",
+                        "params": {
+                            "tokenPath": "#.token"
+                        },
                         "path": "#.amount"
                     }
                 ],
@@ -1017,7 +900,7 @@
                 ]
             },
             "erc20TransferFrom(address,address,uint256)": {
-                "intent": "transfer ERC20 from sender",
+                "intent": "Transfer ERC20 from sender",
                 "fields": [
                     {
                         "label": "Token",
@@ -1030,7 +913,7 @@
                         "path": "#.token"
                     },
                     {
-                        "label": "Receiver",
+                        "label": "Receiver of token",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -1042,7 +925,10 @@
                     },
                     {
                         "label": "Amount",
-                        "format": "amount",
+                        "format": "tokenAmount",
+                        "params": {
+                            "tokenPath": "#.token"
+                        },
                         "path": "#.amount"
                     }
                 ],
@@ -1052,219 +938,11 @@
                     "#.amount"
                 ]
             },
-            "erc4626Deposit(address,uint256,uint256,address)": {
-                "intent": "deposit assets to vault",
-                "fields": [
-                    {
-                        "label": "Vault",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "wallet",
-                                "eoa",
-                                "contract",
-                                "token",
-                                "collection"
-                            ]
-                        },
-                        "path": "#.vault"
-                    },
-                    {
-                        "label": "Assets",
-                        "format": "raw",
-                        "path": "#.assets"
-                    },
-                    {
-                        "label": "Max Share Price E27",
-                        "format": "amount",
-                        "path": "#.maxSharePriceE27"
-                    },
-                    {
-                        "label": "Receiver",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.receiver"
-                    }
-                ],
-                "required": [
-                    "#.vault",
-                    "#.assets",
-                    "#.maxSharePriceE27",
-                    "#.receiver"
-                ]
-            },
-            "erc4626Mint(address,uint256,uint256,address)": {
-                "intent": "mint vault shares",
-                "fields": [
-                    {
-                        "label": "Vault",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "wallet",
-                                "eoa",
-                                "contract",
-                                "token",
-                                "collection"
-                            ]
-                        },
-                        "path": "#.vault"
-                    },
-                    {
-                        "label": "Shares",
-                        "format": "raw",
-                        "path": "#.shares"
-                    },
-                    {
-                        "label": "Max Share Price E27",
-                        "format": "amount",
-                        "path": "#.maxSharePriceE27"
-                    },
-                    {
-                        "label": "Receiver",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.receiver"
-                    }
-                ],
-                "required": [
-                    "#.vault",
-                    "#.shares",
-                    "#.maxSharePriceE27",
-                    "#.receiver"
-                ]
-            },
-            "erc4626Redeem(address,uint256,uint256,address,address)": {
-                "intent": "redeem vault shares",
-                "fields": [
-                    {
-                        "label": "Vault",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "wallet",
-                                "eoa",
-                                "contract",
-                                "token",
-                                "collection"
-                            ]
-                        },
-                        "path": "#.vault"
-                    },
-                    {
-                        "label": "Shares",
-                        "format": "raw",
-                        "path": "#.shares"
-                    },
-                    {
-                        "label": "Min Share Price E27",
-                        "format": "amount",
-                        "path": "#.minSharePriceE27"
-                    },
-                    {
-                        "label": "Receiver",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.receiver"
-                    },
-                    {
-                        "label": "Owner",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.owner"
-                    }
-                ],
-                "required": [
-                    "#.vault",
-                    "#.shares",
-                    "#.minSharePriceE27",
-                    "#.receiver",
-                    "#.owner"
-                ]
-            },
-            "erc4626Withdraw(address,uint256,uint256,address,address)": {
-                "intent": "withdraw vault assets",
-                "fields": [
-                    {
-                        "label": "Vault",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "wallet",
-                                "eoa",
-                                "contract",
-                                "token",
-                                "collection"
-                            ]
-                        },
-                        "path": "#.vault"
-                    },
-                    {
-                        "label": "Assets",
-                        "format": "raw",
-                        "path": "#.assets"
-                    },
-                    {
-                        "label": "Min Share Price E27",
-                        "format": "amount",
-                        "path": "#.minSharePriceE27"
-                    },
-                    {
-                        "label": "Receiver",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.receiver"
-                    },
-                    {
-                        "label": "Owner",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.owner"
-                    }
-                ],
-                "required": [
-                    "#.vault",
-                    "#.assets",
-                    "#.minSharePriceE27",
-                    "#.receiver",
-                    "#.owner"
-                ]
-            },
             "nativeTransfer(address,uint256)": {
-                "intent": "transfer ETH from adapter",
+                "intent": "Transfer ETH from adapter",
                 "fields": [
                     {
-                        "label": "Receiver",
+                        "label": "Receiver of token",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -1286,7 +964,7 @@
                 ]
             },
             "permit2TransferFrom(address,address,uint256)": {
-                "intent": "transfer ERC20 with Permit2",
+                "intent": "Transfer ERC20 with Permit2",
                 "fields": [
                     {
                         "label": "Token",
@@ -1299,7 +977,7 @@
                         "path": "#.token"
                     },
                     {
-                        "label": "Receiver",
+                        "label": "Receiver of token",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -1311,7 +989,10 @@
                     },
                     {
                         "label": "Amount",
-                        "format": "amount",
+                        "format": "tokenAmount",
+                        "params": {
+                            "tokenPath": "#.token"
+                        },
                         "path": "#.amount"
                     }
                 ],
@@ -1322,7 +1003,7 @@
                 ]
             },
             "permit2TransferFromWithPermit(((address,uint256),uint256,uint256),bytes,address,uint256)": {
-                "intent": "transfer ERC20 with Permit2 signature",
+                "intent": "Transfer ERC20 with Permit2 signature",
                 "fields": [
                     {
                         "path": "#.permit",
@@ -1342,7 +1023,10 @@
                                     },
                                     {
                                         "label": "Amount",
-                                        "format": "amount",
+                                        "format": "tokenAmount",
+                                        "params": {
+                                            "tokenPath": "#.permit.permitted.token"
+                                        },
                                         "path": "amount"
                                     }
                                 ]
@@ -1368,7 +1052,7 @@
                         "path": "#.signature"
                     },
                     {
-                        "label": "Receiver",
+                        "label": "Receiver of token",
                         "format": "addressName",
                         "params": {
                             "types": [
@@ -1380,7 +1064,10 @@
                     },
                     {
                         "label": "Amount",
-                        "format": "amount",
+                        "format": "tokenAmount",
+                        "params": {
+                            "tokenPath": "#.permit.permitted.token"
+                        },
                         "path": "#.amount"
                     }
                 ],
@@ -1395,23 +1082,23 @@
                 ]
             },
             "safeDeposit((bytes32,uint256,address,uint256,uint256))": {
-                "intent": "deposit collateral for cPT+cST",
+                "intent": "Deposit collateral for cPT and cST",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Collateral Assets In",
+                                "label": "Collateral assets to deposit",
                                 "format": "raw",
                                 "path": "collateralAssetsIn"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Receiver of shares",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -1422,7 +1109,7 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Min Cpt And Cst Shares Out",
+                                "label": "Minimum cPT and cST shares out",
                                 "format": "raw",
                                 "path": "minCptAndCstSharesOut"
                             },
@@ -1446,23 +1133,23 @@
                 ]
             },
             "safeExercise((bytes32,uint256,address,uint256,uint256,uint256))": {
-                "intent": "exercise cST for collateral",
+                "intent": "Exercise cST for collateral",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Cst Shares In",
+                                "label": "cST shares to exercise",
                                 "format": "raw",
                                 "path": "cstSharesIn"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Collateral receiver",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -1473,12 +1160,12 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Min Collateral Assets Out",
+                                "label": "Minimum collateral assets out",
                                 "format": "raw",
                                 "path": "minCollateralAssetsOut"
                             },
                             {
-                                "label": "Max Reference Assets In",
+                                "label": "Maximum reference assets to spend",
                                 "format": "raw",
                                 "path": "maxReferenceAssetsIn"
                             },
@@ -1503,23 +1190,23 @@
                 ]
             },
             "safeExerciseOther((bytes32,uint256,address,uint256,uint256,uint256))": {
-                "intent": "exercise REF for collateral",
+                "intent": "Exercise reference asset for collateral",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Reference Assets In",
+                                "label": "Reference assets to exercise",
                                 "format": "raw",
                                 "path": "referenceAssetsIn"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Collateral receiver",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -1530,12 +1217,12 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Min Collateral Assets Out",
+                                "label": "Minimum collateral assets out",
                                 "format": "raw",
                                 "path": "minCollateralAssetsOut"
                             },
                             {
-                                "label": "Max Cst Shares In",
+                                "label": "Maximum cST shares to spend",
                                 "format": "raw",
                                 "path": "maxCstSharesIn"
                             },
@@ -1560,23 +1247,23 @@
                 ]
             },
             "safeMint((bytes32,uint256,address,uint256,uint256))": {
-                "intent": "mint exact cPT+cST amount",
+                "intent": "Mint exact cPT and cST amounts",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Cpt And Cst Shares Out",
+                                "label": "cPT and cST shares out",
                                 "format": "raw",
                                 "path": "cptAndCstSharesOut"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Receiver of shares",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -1587,7 +1274,7 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Max Collateral Assets In",
+                                "label": "Maximum collateral assets to deposit",
                                 "format": "raw",
                                 "path": "maxCollateralAssetsIn"
                             },
@@ -1611,18 +1298,18 @@
                 ]
             },
             "safeRedeem((bytes32,uint256,address,address,uint256,uint256,uint256))": {
-                "intent": "redeem cPT at expiry",
+                "intent": "Redeem collateral by burning cPT",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Cpt Shares In",
+                                "label": "cPT shares to redeem",
                                 "format": "raw",
                                 "path": "cptSharesIn"
                             },
@@ -1638,7 +1325,7 @@
                                 "path": "owner"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Receiver of collateral assets",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -1649,12 +1336,12 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Min Reference Assets Out",
+                                "label": "Minimum reference assets out",
                                 "format": "raw",
                                 "path": "minReferenceAssetsOut"
                             },
                             {
-                                "label": "Min Collateral Assets Out",
+                                "label": "Minimum collateral assets out",
                                 "format": "raw",
                                 "path": "minCollateralAssetsOut"
                             },
@@ -1680,23 +1367,23 @@
                 ]
             },
             "safeSwap((bytes32,uint256,address,uint256,uint256,uint256))": {
-                "intent": "swap cST+REF for collateral",
+                "intent": "Swap cST and reference asset for collateral",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Collateral Assets Out",
+                                "label": "Collateral assets out",
                                 "format": "raw",
                                 "path": "collateralAssetsOut"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Receiver of collateral assets",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -1707,12 +1394,12 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Max Cst Shares In",
+                                "label": "Maximum cST shares to spend",
                                 "format": "raw",
                                 "path": "maxCstSharesIn"
                             },
                             {
-                                "label": "Max Reference Assets In",
+                                "label": "Maximum reference assets to spend",
                                 "format": "raw",
                                 "path": "maxReferenceAssetsIn"
                             },
@@ -1737,18 +1424,18 @@
                 ]
             },
             "safeUnwindDeposit((bytes32,uint256,address,address,uint256,uint256))": {
-                "intent": "burn cPT+cST for collateral (exact out)",
+                "intent": "Burn cPT and cST for collateral (exact out)",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Collateral Assets Out",
+                                "label": "Collateral assets out",
                                 "format": "raw",
                                 "path": "collateralAssetsOut"
                             },
@@ -1764,7 +1451,7 @@
                                 "path": "owner"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Receiver of collateral assets",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -1775,7 +1462,7 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Max Cpt And Cst Shares In",
+                                "label": "Maximum cPT and cST shares to burn",
                                 "format": "raw",
                                 "path": "maxCptAndCstSharesIn"
                             },
@@ -1800,23 +1487,23 @@
                 ]
             },
             "safeUnwindExercise((bytes32,uint256,address,uint256,uint256,uint256))": {
-                "intent": "repurchase cST & REF (exact cST out)",
+                "intent": "Repurchase cST and reference asset (exact cST out)",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Cst Shares Out",
+                                "label": "cST shares out",
                                 "format": "raw",
                                 "path": "cstSharesOut"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Receiver of reference assets and cST shares",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -1827,12 +1514,12 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Min Reference Assets Out",
+                                "label": "Minimum reference assets out",
                                 "format": "raw",
                                 "path": "minReferenceAssetsOut"
                             },
                             {
-                                "label": "Max Collateral Assets In",
+                                "label": "Maximum collateral assets to spend",
                                 "format": "raw",
                                 "path": "maxCollateralAssetsIn"
                             },
@@ -1857,23 +1544,23 @@
                 ]
             },
             "safeUnwindExerciseOther((bytes32,uint256,address,uint256,uint256,uint256))": {
-                "intent": "repurchase cST & REF (exact REF out)",
+                "intent": "Repurchase cST and reference asset (exact reference asset out)",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Reference Assets Out",
+                                "label": "Reference assets out",
                                 "format": "raw",
                                 "path": "referenceAssetsOut"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Receiver of reference assets and cST shares",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -1884,12 +1571,12 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Min Cst Shares Out",
+                                "label": "Minimum cST shares out",
                                 "format": "raw",
                                 "path": "minCstSharesOut"
                             },
                             {
-                                "label": "Max Collateral Assets In",
+                                "label": "Maximum collateral assets to spend",
                                 "format": "raw",
                                 "path": "maxCollateralAssetsIn"
                             },
@@ -1914,18 +1601,18 @@
                 ]
             },
             "safeUnwindMint((bytes32,uint256,address,address,uint256,uint256))": {
-                "intent": "burn cPT+cST for collateral (exact in)",
+                "intent": "Burn cPT and cST for collateral (exact input)",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Cpt And Cst Shares In",
+                                "label": "cPT and cST shares to burn",
                                 "format": "raw",
                                 "path": "cptAndCstSharesIn"
                             },
@@ -1941,7 +1628,7 @@
                                 "path": "owner"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Receiver of collateral assets",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -1952,7 +1639,7 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Min Collateral Assets Out",
+                                "label": "Minimum collateral assets out",
                                 "format": "raw",
                                 "path": "minCollateralAssetsOut"
                             },
@@ -1977,23 +1664,23 @@
                 ]
             },
             "safeUnwindSwap((bytes32,uint256,address,uint256,uint256,uint256))": {
-                "intent": "swap collateral for cST+REF",
+                "intent": "Swap collateral for cST and reference asset",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Collateral Assets In",
+                                "label": "Collateral assets to swap",
                                 "format": "raw",
                                 "path": "collateralAssetsIn"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Receiver of reference assets and cST",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -2004,12 +1691,12 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Min Reference Assets Out",
+                                "label": "Minimum reference assets out",
                                 "format": "raw",
                                 "path": "minReferenceAssetsOut"
                             },
                             {
-                                "label": "Min Cst Shares Out",
+                                "label": "Minimum cST shares out",
                                 "format": "raw",
                                 "path": "minCstSharesOut"
                             },
@@ -2034,18 +1721,18 @@
                 ]
             },
             "safeWithdraw((bytes32,uint256,address,address,uint256,uint256))": {
-                "intent": "withdraw CA & REF (exact CA out)",
+                "intent": "Withdraw collateral and reference assets (exact collateral out)",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Collateral Assets Out",
+                                "label": "Collateral assets out",
                                 "format": "raw",
                                 "path": "collateralAssetsOut"
                             },
@@ -2061,7 +1748,7 @@
                                 "path": "owner"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Receiver of collateral assets and reference assets",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -2072,7 +1759,7 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Max Cpt Shares In",
+                                "label": "Maximum cPT shares to redeem",
                                 "format": "raw",
                                 "path": "maxCptSharesIn"
                             },
@@ -2097,18 +1784,18 @@
                 ]
             },
             "safeWithdrawOther((bytes32,uint256,address,address,uint256,uint256))": {
-                "intent": "withdraw CA & REF (exact REF out)",
+                "intent": "Withdraw collateral and reference assets (exact reference asset out)",
                 "fields": [
                     {
                         "path": "#.params",
                         "fields": [
                             {
-                                "label": "Pool Id",
+                                "label": "Pool ID",
                                 "format": "raw",
                                 "path": "poolId"
                             },
                             {
-                                "label": "Reference Assets Out",
+                                "label": "Reference assets out",
                                 "format": "raw",
                                 "path": "referenceAssetsOut"
                             },
@@ -2124,7 +1811,7 @@
                                 "path": "owner"
                             },
                             {
-                                "label": "Receiver",
+                                "label": "Receiver of collateral assets and reference assets",
                                 "format": "addressName",
                                 "params": {
                                     "types": [
@@ -2135,7 +1822,7 @@
                                 "path": "receiver"
                             },
                             {
-                                "label": "Max Cpt Shares In",
+                                "label": "Maximum cPT shares to redeem",
                                 "format": "raw",
                                 "path": "maxCptSharesIn"
                             },
@@ -2157,25 +1844,6 @@
                     "#.params.receiver",
                     "#.params.maxCptSharesIn",
                     "#.params.deadline"
-                ]
-            },
-            "transferOwnership(address)": {
-                "intent": "transfer contract ownership",
-                "fields": [
-                    {
-                        "label": "New Owner",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.newOwner"
-                    }
-                ],
-                "required": [
-                    "#.newOwner"
                 ]
             }
         }

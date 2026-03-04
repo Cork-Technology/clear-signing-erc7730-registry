@@ -1,4 +1,6 @@
 {
+    "$schema": "../../specs/erc7730-v1.schema.json",
+    "includes": "common-ownership.json",
     "context": {
         "$id": "SharesFactory",
         "contract": {
@@ -144,26 +146,6 @@
         }
     },
     "display": {
-        "formats": {
-            "transferOwnership(address)": {
-                "intent": "transfer ownership",
-                "fields": [
-                    {
-                        "label": "New Owner",
-                        "format": "addressName",
-                        "params": {
-                            "types": [
-                                "eoa",
-                                "wallet"
-                            ]
-                        },
-                        "path": "#.newOwner"
-                    }
-                ],
-                "required": [
-                    "#.newOwner"
-                ]
-            }
-        }
+        "formats": {}
     }
 }
