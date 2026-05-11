@@ -997,7 +997,7 @@
       },
       "pauseDeposits(bytes32 id)": {
         "$id": "pauseDeposits",
-        "intent": "Pause deposits (one market)",
+        "intent": "Pause deposits",
         "fields": [
           {
             "path": "id",
@@ -1009,7 +1009,7 @@
       },
       "pauseMarket(bytes32 id)": {
         "$id": "pauseMarket",
-        "intent": "Pause all operations (one market)",
+        "intent": "Pause market",
         "fields": [
           {
             "path": "id",
@@ -1021,7 +1021,7 @@
       },
       "pauseSwaps(bytes32 id)": {
         "$id": "pauseSwaps",
-        "intent": "Pause swap and exercise (one market)",
+        "intent": "Pause swap and exercise",
         "fields": [
           {
             "path": "id",
@@ -1033,7 +1033,7 @@
       },
       "pauseUnwindDepositAndMints(bytes32 id)": {
         "$id": "pauseUnwindDepositAndMints",
-        "intent": "Pause unwind deposit (one market)",
+        "intent": "Pause unwind deposit",
         "fields": [
           {
             "path": "id",
@@ -1045,7 +1045,7 @@
       },
       "pauseUnwindSwaps(bytes32 id)": {
         "$id": "pauseUnwindSwaps",
-        "intent": "Pause repurchase (one market)",
+        "intent": "Pause repurchase",
         "fields": [
           {
             "path": "id",
@@ -1057,7 +1057,7 @@
       },
       "pauseWithdrawals(bytes32 id)": {
         "$id": "pauseWithdrawals",
-        "intent": "Pause withdrawals (one market)",
+        "intent": "Pause withdrawals",
         "fields": [
           {
             "path": "id",
@@ -1069,7 +1069,7 @@
       },
       "unpauseDeposits(bytes32 id)": {
         "$id": "unpauseDeposits",
-        "intent": "Unpause deposits (one market)",
+        "intent": "Unpause deposits",
         "fields": [
           {
             "path": "id",
@@ -1081,7 +1081,7 @@
       },
       "unpauseSwaps(bytes32 id)": {
         "$id": "unpauseSwaps",
-        "intent": "Unpause swap and exercise (one market)",
+        "intent": "Unpause swap and exercise",
         "fields": [
           {
             "path": "id",
@@ -1093,7 +1093,7 @@
       },
       "unpauseUnwindDepositAndMints(bytes32 id)": {
         "$id": "unpauseUnwindDepositAndMints",
-        "intent": "Unpause unwind deposit (one market)",
+        "intent": "Unpause unwind deposit",
         "fields": [
           {
             "path": "id",
@@ -1105,7 +1105,7 @@
       },
       "unpauseUnwindSwaps(bytes32 id)": {
         "$id": "unpauseUnwindSwaps",
-        "intent": "Unpause repurchase (one market)",
+        "intent": "Unpause repurchase",
         "fields": [
           {
             "path": "id",
@@ -1117,7 +1117,7 @@
       },
       "unpauseWithdrawals(bytes32 id)": {
         "$id": "unpauseWithdrawals",
-        "intent": "Unpause withdrawals (one market)",
+        "intent": "Unpause withdrawals",
         "fields": [
           {
             "path": "id",

@@ -1099,7 +1099,7 @@
           },
           {
             "path": "collateralAssetsIn",
-            "label": "Collateral amount",
+            "label": "Collateral",
             "format": "tokenAmount",
             "params": {
               "token": {
@@ -1215,7 +1215,7 @@
           },
           {
             "path": "cstSharesIn",
-            "label": "cST amount in",
+            "label": "cST in",
             "format": "tokenAmount",
             "params": {
               "token": {
@@ -1285,7 +1285,7 @@
           },
           {
             "path": "referenceAssetsIn",
-            "label": "Reference amount in",
+            "label": "Reference in",
             "format": "tokenAmount",
             "params": {
               "token": {
@@ -1355,7 +1355,7 @@
           },
           {
             "path": "collateralAssetsOut",
-            "label": "Collateral amount out",
+            "label": "Collateral out",
             "format": "tokenAmount",
             "params": {
               "token": {
@@ -1425,7 +1425,7 @@
           },
           {
             "path": "cptSharesIn",
-            "label": "cPT amount in",
+            "label": "cPT in",
             "format": "tokenAmount",
             "params": {
               "token": {
@@ -1507,7 +1507,7 @@
           },
           {
             "path": "collateralAssetsOut",
-            "label": "Collateral amount out",
+            "label": "Collateral out",
             "format": "tokenAmount",
             "params": {
               "token": {
@@ -1577,7 +1577,7 @@
           },
           {
             "path": "referenceAssetsOut",
-            "label": "Reference amount out",
+            "label": "Reference out",
             "format": "tokenAmount",
             "params": {
               "token": {
@@ -1647,7 +1647,7 @@
           },
           {
             "path": "collateralAssetsIn",
-            "label": "Collateral amount in",
+            "label": "Collateral in",
             "format": "tokenAmount",
             "params": {
               "token": {
@@ -1717,7 +1717,7 @@
           },
           {
             "path": "cstSharesOut",
-            "label": "cST amount out",
+            "label": "cST out",
             "format": "tokenAmount",
             "params": {
               "token": {
@@ -1787,7 +1787,7 @@
           },
           {
             "path": "referenceAssetsOut",
-            "label": "Reference amount out",
+            "label": "Reference out",
             "format": "tokenAmount",
             "params": {
               "token": {
@@ -1857,7 +1857,7 @@
           },
           {
             "path": "collateralAssetsOut",
-            "label": "Collateral amount out",
+            "label": "Collateral out",
             "format": "tokenAmount",
             "params": {
               "token": {
