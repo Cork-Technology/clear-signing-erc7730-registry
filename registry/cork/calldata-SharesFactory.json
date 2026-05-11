@@ -239,7 +239,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Deploy shares for {poolId}"
       }
     }
   }

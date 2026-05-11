@@ -223,7 +223,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Cancel operation {id}"
       },
       "execute(address target, uint256 value, bytes payload, bytes32 predecessor, bytes32 salt)": {
         "$id": "execute",
@@ -267,7 +268,8 @@
             "label": "Salt",
             "visible": "never"
           }
-        ]
+        ],
+        "interpolatedIntent": "Execute on {target}"
       },
       "executeBatch(address[] targets, uint256[] values, bytes[] payloads, bytes32 predecessor, bytes32 salt)": {
         "$id": "executeBatch",
@@ -308,7 +310,8 @@
             "label": "Salt",
             "visible": "never"
           }
-        ]
+        ],
+        "interpolatedIntent": "Execute batched operations"
       },
       "schedule(address target, uint256 value, bytes data, bytes32 predecessor, bytes32 salt, uint256 delay)": {
         "$id": "schedule",
@@ -358,7 +361,8 @@
             "label": "Salt",
             "visible": "never"
           }
-        ]
+        ],
+        "interpolatedIntent": "Schedule on {target}"
       },
       "scheduleBatch(address[] targets, uint256[] values, bytes[] payloads, bytes32 predecessor, bytes32 salt, uint256 delay)": {
         "$id": "scheduleBatch",
@@ -405,7 +409,8 @@
             "label": "Salt",
             "visible": "never"
           }
-        ]
+        ],
+        "interpolatedIntent": "Schedule batched operations"
       },
       "updateDelay(uint256 newDelay)": {
         "$id": "updateDelay",
@@ -417,7 +422,8 @@
             "format": "duration",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Set delay to {newDelay}"
       },
       "grantRole(bytes32 role, address account)": {
         "$id": "grantRole",
@@ -445,7 +451,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Grant {role} to {account}"
       },
       "revokeRole(bytes32 role, address account)": {
         "$id": "revokeRole",
@@ -473,7 +480,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Revoke {role} from {account}"
       },
       "renounceRole(bytes32 role, address callerConfirmation)": {
         "$id": "renounceRole",
@@ -501,7 +509,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Renounce {role}"
       }
     }
   }

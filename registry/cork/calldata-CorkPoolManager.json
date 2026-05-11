@@ -1972,7 +1972,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "New market with {rateOracle}"
       },
       "deposit(bytes32 poolId, uint256 collateralAssetsIn, address receiver)": {
         "$id": "deposit",
@@ -2447,7 +2448,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Pause all: {isAllPaused}"
       },
       "setPausedBitMap(bytes32 poolId, uint16 newPauseBitMap)": {
         "$id": "setPausedBitMap",
@@ -2465,7 +2467,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Set bitmap on {poolId}"
       },
       "initialize(address ensOwner, address admin, address constraintRateAdapter, address treasury, address whitelistManager)": {
         "$id": "initialize",
@@ -2531,7 +2534,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Init with admin {admin}"
       },
       "setSharesFactory(address newSharesFactory)": {
         "$id": "setSharesFactory",
@@ -2548,7 +2552,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Factory to {newSharesFactory}"
       },
       "setTreasuryAddress(address newTreasury)": {
         "$id": "setTreasuryAddress",
@@ -2567,7 +2572,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Treasury to {newTreasury}"
       },
       "updateSwapFeePercentage(bytes32 poolId, uint256 newSwapFeePercentage)": {
         "$id": "updateSwapFeePercentage",
@@ -2589,7 +2595,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Swap fee on {poolId}"
       },
       "updateUnwindSwapFeePercentage(bytes32 poolId, uint256 newUnwindSwapFeePercentage)": {
         "$id": "updateUnwindSwapFeePercentage",
@@ -2611,7 +2618,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Repurchase fee on {poolId}"
       }
     }
   }

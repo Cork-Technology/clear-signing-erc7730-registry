@@ -781,7 +781,8 @@
               ]
             }
           }
-        ]
+        ],
+        "interpolatedIntent": "Add to global whitelist"
       },
       "removeFromGlobalWhitelist(address[] accounts)": {
         "$id": "removeFromGlobalWhitelist",
@@ -799,7 +800,8 @@
               ]
             }
           }
-        ]
+        ],
+        "interpolatedIntent": "Remove from global whitelist"
       },
       "addToMarketWhitelist(bytes32 marketId, address[] accounts)": {
         "$id": "addToMarketWhitelist",
@@ -823,7 +825,8 @@
               ]
             }
           }
-        ]
+        ],
+        "interpolatedIntent": "Add to market {marketId}"
       },
       "removeFromMarketWhitelist(bytes32 marketId, address[] accounts)": {
         "$id": "removeFromMarketWhitelist",
@@ -847,7 +850,8 @@
               ]
             }
           }
-        ]
+        ],
+        "interpolatedIntent": "Remove from market {marketId}"
       },
       "disableMarketWhitelist(bytes32 marketId)": {
         "$id": "disableMarketWhitelist",
@@ -859,27 +863,32 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Disable on market {marketId}"
       },
       "pause()": {
         "$id": "pause",
         "intent": "Pause market creation",
-        "fields": []
+        "fields": [],
+        "interpolatedIntent": "Pause market creation"
       },
       "pauseAll()": {
         "$id": "pauseAll",
         "intent": "Pause all markets",
-        "fields": []
+        "fields": [],
+        "interpolatedIntent": "Pause all markets"
       },
       "unpause()": {
         "$id": "unpause",
         "intent": "Unpause market creation",
-        "fields": []
+        "fields": [],
+        "interpolatedIntent": "Unpause market creation"
       },
       "unpauseAll()": {
         "$id": "unpauseAll",
         "intent": "Unpause all markets",
-        "fields": []
+        "fields": [],
+        "interpolatedIntent": "Unpause all markets"
       },
       "pauseDeposits(bytes32 id)": {
         "$id": "pauseDeposits",
@@ -891,7 +900,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Pause deposits on {id}"
       },
       "pauseMarket(bytes32 id)": {
         "$id": "pauseMarket",
@@ -903,7 +913,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Pause market {id}"
       },
       "pauseSwaps(bytes32 id)": {
         "$id": "pauseSwaps",
@@ -915,7 +926,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Pause swap on {id}"
       },
       "pauseUnwindDepositAndMints(bytes32 id)": {
         "$id": "pauseUnwindDepositAndMints",
@@ -927,7 +939,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Pause unwind on {id}"
       },
       "pauseUnwindSwaps(bytes32 id)": {
         "$id": "pauseUnwindSwaps",
@@ -939,7 +952,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Pause repurchase on {id}"
       },
       "pauseWithdrawals(bytes32 id)": {
         "$id": "pauseWithdrawals",
@@ -951,7 +965,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Pause withdrawals on {id}"
       },
       "unpauseDeposits(bytes32 id)": {
         "$id": "unpauseDeposits",
@@ -963,7 +978,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Unpause deposits on {id}"
       },
       "unpauseSwaps(bytes32 id)": {
         "$id": "unpauseSwaps",
@@ -975,7 +991,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Unpause swap on {id}"
       },
       "unpauseUnwindDepositAndMints(bytes32 id)": {
         "$id": "unpauseUnwindDepositAndMints",
@@ -987,7 +1004,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Unpause unwind on {id}"
       },
       "unpauseUnwindSwaps(bytes32 id)": {
         "$id": "unpauseUnwindSwaps",
@@ -999,7 +1017,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Unpause repurchase on {id}"
       },
       "unpauseWithdrawals(bytes32 id)": {
         "$id": "unpauseWithdrawals",
@@ -1011,7 +1030,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Unpause withdrawals {id}"
       },
       "setOnceCorkPoolManager(address corkPoolManagerAddress)": {
         "$id": "setOnceCorkPoolManager",
@@ -1028,7 +1048,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Set manager (one-time)"
       },
       "setSharesFactory(address sharesFactory)": {
         "$id": "setSharesFactory",
@@ -1045,7 +1066,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Factory to {sharesFactory}"
       },
       "setTreasury(address treasuryAddress)": {
         "$id": "setTreasury",
@@ -1064,7 +1086,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Treasury to {treasuryAddress}"
       },
       "updateSwapFeePercentage(bytes32 id, uint256 newSwapFeePercentage)": {
         "$id": "updateSwapFeePercentage",
@@ -1086,7 +1109,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Swap fee on {id}"
       },
       "updateUnwindSwapFeePercentage(bytes32 id, uint256 newUnwindSwapFeePercentage)": {
         "$id": "updateUnwindSwapFeePercentage",
@@ -1108,7 +1132,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Repurchase fee on {id}"
       },
       "createNewPool((address,address,uint256,uint256,uint256,uint256,uint256,address) pool, uint256 unwindSwapFeePercentage, uint256 swapFeePercentage, bool isWhitelistEnabled)": {
         "$id": "createNewPool",
@@ -1222,7 +1247,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "New market: {pool.rateOracle}"
       }
     }
   }

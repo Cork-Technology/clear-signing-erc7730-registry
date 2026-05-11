@@ -328,7 +328,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Init with admin {upgradeAdmin}"
       },
       "bootstrap(bytes32 poolId)": {
         "$id": "bootstrap",
@@ -340,7 +341,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Bootstrap pool {poolId}"
       },
       "adjustedRate(bytes32 poolId)": {
         "$id": "adjustedRate",
@@ -352,7 +354,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Refresh pool {poolId}"
       },
       "setOnceCorkPoolManager(address corkPoolManager)": {
         "$id": "setOnceCorkPoolManager",
@@ -369,7 +372,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Manager: {corkPoolManager}"
       }
     }
   }

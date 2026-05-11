@@ -1766,7 +1766,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Permit2 pull to {receiver}"
       }
     }
   }

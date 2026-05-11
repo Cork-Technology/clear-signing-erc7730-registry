@@ -416,7 +416,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Activate on market {marketId}"
       },
       "disableMarketWhitelist(bytes32 marketId)": {
         "$id": "disableMarketWhitelist",
@@ -428,7 +429,8 @@
             "format": "raw",
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Disable on market {marketId}"
       },
       "addToGlobalWhitelist(address[] accounts)": {
         "$id": "addToGlobalWhitelist",
@@ -446,7 +448,8 @@
               ]
             }
           }
-        ]
+        ],
+        "interpolatedIntent": "Add to global whitelist"
       },
       "removeFromGlobalWhitelist(address[] accounts)": {
         "$id": "removeFromGlobalWhitelist",
@@ -464,7 +467,8 @@
               ]
             }
           }
-        ]
+        ],
+        "interpolatedIntent": "Remove from global whitelist"
       },
       "addToMarketWhitelist(bytes32 marketId, address[] accounts)": {
         "$id": "addToMarketWhitelist",
@@ -488,7 +492,8 @@
               ]
             }
           }
-        ]
+        ],
+        "interpolatedIntent": "Add to market {marketId}"
       },
       "removeFromMarketWhitelist(bytes32 marketId, address[] accounts)": {
         "$id": "removeFromMarketWhitelist",
@@ -512,7 +517,8 @@
               ]
             }
           }
-        ]
+        ],
+        "interpolatedIntent": "Remove from market {marketId}"
       },
       "initialize(address ensOwner, address admin)": {
         "$id": "initialize",
@@ -543,7 +549,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Init with admin {admin}"
       },
       "setOnceCorkPoolManager(address corkPoolManager)": {
         "$id": "setOnceCorkPoolManager",
@@ -560,7 +567,8 @@
             },
             "visible": "always"
           }
-        ]
+        ],
+        "interpolatedIntent": "Manager: {corkPoolManager}"
       }
     }
   }
