@@ -1,5 +1,5 @@
 {
-    "$schema": "../../specs/erc7730-v1.schema.json",
+    "$schema": "../../specs/erc7730-v2.schema.json",
     "context": {
         "$id": "OpenZeppelin TimelockController",
         "contract": {
@@ -16,90 +16,103 @@
             ]
         }
     },
-    "metadata": { "owner": "OpenZeppelin" },
+    "metadata": {
+        "owner": "OpenZeppelin",
+        "enums": {
+            "roles": {
+                "0x0000000000000000000000000000000000000000000000000000000000000000": "DEFAULT_ADMIN_ROLE",
+                "0xb09aa5aeb3702cfd50b6b62bc4532604938f21248a27a1d5ca736082b6819cc1": "PROPOSER_ROLE",
+                "0xd8aa0f3194971a2a116679f7c2090f6939c8d4e01a2a8d7e41d55e5351469e63": "EXECUTOR_ROLE",
+                "0xfd643c72710c63c0180259aba6b2d05451e3591a24e58b62239378085726f783": "CANCELLER_ROLE",
+                "0x189ab7a9244df0848122154315af71fe140f3db0fe014031783b0946b8c9d2e3": "TIMELOCK_ADMIN_ROLE"
+            }
+        }
+    },
     "display": {
         "formats": {
-            "cancel(bytes32)": {
-                "intent": "Cancel operation",
-                "fields": [{ "label": "ID", "format": "raw", "path": "#.id" }],
-                "required": ["#.id"]
-            },
-            "execute(address,uint256,bytes,bytes32,bytes32)": {
-                "intent": "Execute operation",
+            "cancel(bytes32 id)": {
+                "$id": "cancel",
+                "intent": "Cancel scheduled operation",
                 "fields": [
-                    { "label": "Target", "format": "addressName", "params": { "types": ["wallet","eoa","contract","token","collection"] }, "path": "#.target" },
-                    { "label": "Value", "format": "amount", "path": "#.value" },
-                    { "label": "Payload", "format": "calldata", "params": { "calleePath": "#.target" }, "path": "#.payload" },
-                    { "label": "Predecessor", "format": "raw", "path": "#.predecessor" },
-                    { "label": "Salt", "format": "raw", "path": "#.salt" }
-                ],
-                "required": ["#.target","#.value","#.payload","#.predecessor","#.salt"],
-                "excluded": ["#.payload.[]"]
+                    { "path": "id", "label": "Operation ID", "format": "raw", "visible": "always" }
+                ]
             },
-            "executeBatch(address[],uint256[],bytes[],bytes32,bytes32)": {
-                "intent": "Execute batch operations",
+            "execute(address target, uint256 value, bytes payload, bytes32 predecessor, bytes32 salt)": {
+                "$id": "execute",
+                "intent": "Execute scheduled operation",
                 "fields": [
-                    { "label": "Targets", "format": "addressName", "params": { "types": ["wallet","eoa","contract","token","collection"] }, "path": "#.targets.[]" },
-                    { "label": "Values", "format": "amount", "path": "#.values.[]" },
-                    { "label": "Payloads", "format": "calldata", "params": { "calleePath": "#.targets.[]" }, "path": "#.payloads.[]" },
-                    { "label": "Predecessor", "format": "raw", "path": "#.predecessor" },
-                    { "label": "Salt", "format": "raw", "path": "#.salt" }
-                ],
-                "required": ["#.targets.[]","#.values.[]","#.payloads.[]","#.predecessor","#.salt"]
+                    { "path": "target", "label": "Target", "format": "addressName", "params": { "types": ["contract", "eoa", "wallet"] }, "visible": "always" },
+                    { "path": "value", "label": "Native value", "format": "amount" },
+                    { "path": "payload", "label": "Call", "format": "calldata", "params": { "calleePath": "target", "amountPath": "value" }, "visible": "always" },
+                    { "path": "predecessor", "label": "Predecessor", "visible": "never" },
+                    { "path": "salt", "label": "Salt", "visible": "never" }
+                ]
             },
-            "schedule(address,uint256,bytes,bytes32,bytes32,uint256)": {
+            "executeBatch(address[] targets, uint256[] values, bytes[] payloads, bytes32 predecessor, bytes32 salt)": {
+                "$id": "executeBatch",
+                "intent": "Execute batched scheduled operations",
+                "fields": [
+                    { "path": "targets.[]", "label": "Target", "format": "addressName", "params": { "types": ["contract", "eoa", "wallet"] } },
+                    { "path": "values.[]", "label": "Native value", "format": "amount" },
+                    { "path": "payloads.[]", "label": "Call", "format": "calldata", "params": { "calleePath": "targets.[]" } },
+                    { "path": "predecessor", "label": "Predecessor", "visible": "never" },
+                    { "path": "salt", "label": "Salt", "visible": "never" }
+                ]
+            },
+            "schedule(address target, uint256 value, bytes data, bytes32 predecessor, bytes32 salt, uint256 delay)": {
+                "$id": "schedule",
                 "intent": "Schedule operation",
                 "fields": [
-                    { "label": "Target", "format": "addressName", "params": { "types": ["wallet","eoa","contract","token","collection"] }, "path": "#.target" },
-                    { "label": "Value", "format": "amount", "path": "#.value" },
-                    { "label": "Data", "format": "calldata", "params": { "calleePath": "#.target" }, "path": "#.data" },
-                    { "label": "Predecessor", "format": "raw", "path": "#.predecessor" },
-                    { "label": "Salt", "format": "raw", "path": "#.salt" },
-                    { "label": "Delay", "format": "raw", "path": "#.delay" }
-                ],
-                "required": ["#.target","#.value","#.data","#.predecessor","#.salt","#.delay"],
-                "excluded": ["#.data.[]"]
+                    { "path": "target", "label": "Target", "format": "addressName", "params": { "types": ["contract", "eoa", "wallet"] }, "visible": "always" },
+                    { "path": "value", "label": "Native value", "format": "amount" },
+                    { "path": "data", "label": "Call", "format": "calldata", "params": { "calleePath": "target", "amountPath": "value" }, "visible": "always" },
+                    { "path": "delay", "label": "Delay", "format": "duration", "visible": "always" },
+                    { "path": "predecessor", "label": "Predecessor", "visible": "never" },
+                    { "path": "salt", "label": "Salt", "visible": "never" }
+                ]
             },
-            "scheduleBatch(address[],uint256[],bytes[],bytes32,bytes32,uint256)": {
-                "intent": "Schedule batch operations",
+            "scheduleBatch(address[] targets, uint256[] values, bytes[] payloads, bytes32 predecessor, bytes32 salt, uint256 delay)": {
+                "$id": "scheduleBatch",
+                "intent": "Schedule batched operations",
                 "fields": [
-                    { "label": "Targets", "format": "addressName", "params": { "types": ["wallet","eoa","contract","token","collection"] }, "path": "#.targets.[]" },
-                    { "label": "Values", "format": "amount", "path": "#.values.[]" },
-                    { "label": "Payloads", "format": "calldata", "params": { "calleePath": "#.targets.[]" }, "path": "#.payloads.[]" },
-                    { "label": "Predecessor", "format": "raw", "path": "#.predecessor" },
-                    { "label": "Salt", "format": "raw", "path": "#.salt" },
-                    { "label": "Delay", "format": "raw", "path": "#.delay" }
-                ],
-                "required": ["#.targets.[]","#.values.[]","#.payloads.[]","#.predecessor","#.salt","#.delay"]
+                    { "path": "targets.[]", "label": "Target", "format": "addressName", "params": { "types": ["contract", "eoa", "wallet"] } },
+                    { "path": "values.[]", "label": "Native value", "format": "amount" },
+                    { "path": "payloads.[]", "label": "Call", "format": "calldata", "params": { "calleePath": "targets.[]" } },
+                    { "path": "delay", "label": "Delay", "format": "duration", "visible": "always" },
+                    { "path": "predecessor", "label": "Predecessor", "visible": "never" },
+                    { "path": "salt", "label": "Salt", "visible": "never" }
+                ]
             },
-            "updateDelay(uint256)": {
+            "updateDelay(uint256 newDelay)": {
+                "$id": "updateDelay",
                 "intent": "Update execution delay",
-                "fields": [{ "label": "New delay", "format": "raw", "path": "#.newDelay" }],
-                "required": ["#.newDelay"]
+                "fields": [
+                    { "path": "newDelay", "label": "New delay", "format": "duration", "visible": "always" }
+                ]
             },
-            "grantRole(bytes32,address)": {
+            "grantRole(bytes32 role, address account)": {
+                "$id": "grantRole",
                 "intent": "Grant role",
                 "fields": [
-                    { "label": "Role", "format": "raw", "path": "#.role" },
-                    { "label": "Account", "format": "addressName", "params": { "types": ["eoa","wallet"] }, "path": "#.account" }
-                ],
-                "required": ["#.role","#.account"]
+                    { "path": "role", "label": "Role", "format": "enum", "params": { "$ref": "$.metadata.enums.roles" }, "visible": "always" },
+                    { "path": "account", "label": "Account", "format": "addressName", "params": { "types": ["eoa", "wallet", "contract"] }, "visible": "always" }
+                ]
             },
-            "revokeRole(bytes32,address)": {
+            "revokeRole(bytes32 role, address account)": {
+                "$id": "revokeRole",
                 "intent": "Revoke role",
                 "fields": [
-                    { "label": "Role", "format": "raw", "path": "#.role" },
-                    { "label": "Account", "format": "addressName", "params": { "types": ["eoa","wallet"] }, "path": "#.account" }
-                ],
-                "required": ["#.role","#.account"]
+                    { "path": "role", "label": "Role", "format": "enum", "params": { "$ref": "$.metadata.enums.roles" }, "visible": "always" },
+                    { "path": "account", "label": "Account", "format": "addressName", "params": { "types": ["eoa", "wallet", "contract"] }, "visible": "always" }
+                ]
             },
-            "renounceRole(bytes32,address)": {
+            "renounceRole(bytes32 role, address callerConfirmation)": {
+                "$id": "renounceRole",
                 "intent": "Renounce role",
                 "fields": [
-                    { "label": "Role", "format": "raw", "path": "#.role" },
-                    { "label": "Caller confirmation", "format": "addressName", "params": { "types": ["wallet","eoa","contract","token","collection"] }, "path": "#.callerConfirmation" }
-                ],
-                "required": ["#.role","#.callerConfirmation"]
+                    { "path": "role", "label": "Role", "format": "enum", "params": { "$ref": "$.metadata.enums.roles" }, "visible": "always" },
+                    { "path": "callerConfirmation", "label": "Caller confirmation", "format": "addressName", "params": { "types": ["eoa", "wallet", "contract"] }, "visible": "always" }
+                ]
             }
         }
     }

@@ -1,21 +1,21 @@
 {
-    "$schema": "../../specs/erc7730-v1.schema.json",
-    "includes": "../../ercs/calldata-erc20-tokens.json",
-    "metadata": {
-        "owner": "Cork Protocol",
-        "info": {
-            "legalName": "Cork Protocol",
-            "url": "https://www.cork.tech/"
+  "$schema": "../../specs/erc7730-v2.schema.json",
+  "includes": "../../ercs/calldata-erc20-tokens.json",
+  "context": {
+    "contract": {
+      "deployments": [
+        {
+          "chainId": 1,
+          "address": "0xAB047FaeC0093e83a4fc7Db3e4ccd126251B25a3"
         }
-    },
-    "context": {
-        "contract": {
-            "deployments": [
-                {
-                    "chainId": 1,
-                    "address": "0xAB047FaeC0093e83a4fc7Db3e4ccd126251B25a3"
-                }
-            ]
-        }
+      ]
     }
+  },
+  "metadata": {
+    "owner": "Cork Protocol",
+    "contractName": "cPT-vbUSDC-sUSDe",
+    "info": {
+      "url": "https://www.cork.tech/"
+    }
+  }
 }

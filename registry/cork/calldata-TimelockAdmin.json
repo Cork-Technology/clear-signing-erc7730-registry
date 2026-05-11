@@ -1,21 +1,22 @@
 {
-    "includes": "common-timelock.json",
-    "context": {
-        "$id": "Timelock Admin",
-        "contract": {
-            "deployments": [
-                {
-                    "chainId": 1,
-                    "address": "0x7CccCCccccCCe566CdAFFA9EF2CB245Ad5575c3b"
-                }
-            ]
+  "$schema": "../../specs/erc7730-v2.schema.json",
+  "includes": "common-timelock.json",
+  "context": {
+    "$id": "Timelock Admin",
+    "contract": {
+      "deployments": [
+        {
+          "chainId": 1,
+          "address": "0x7CccCCccccCCe566CdAFFA9EF2CB245Ad5575c3b"
         }
-    },
-    "metadata": {
-        "owner": "Cork Protocol",
-        "info": {
-            "legalName": "Cork Protocol",
-            "url": "https://www.cork.tech/"
-        }
+      ]
     }
+  },
+  "metadata": {
+    "owner": "Cork Protocol",
+    "contractName": "Timelock Admin",
+    "info": {
+      "url": "https://www.cork.tech/"
+    }
+  }
 }

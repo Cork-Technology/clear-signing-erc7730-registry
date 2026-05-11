@@ -1,4 +1,5 @@
 {
+    "$schema": "../../specs/erc7730-v2.schema.json",
     "context": {
         "$id": "OpenZeppelin Access Control",
         "contract": {
@@ -9,32 +10,40 @@
             ]
         }
     },
-    "metadata": { "owner": "OpenZeppelin" },
+    "metadata": {
+        "owner": "OpenZeppelin",
+        "enums": {
+            "roles": {
+                "0x0000000000000000000000000000000000000000000000000000000000000000": "DEFAULT_ADMIN_ROLE",
+                "0xbacaac7111261f759d9968274e51df6a493610537491f9a499d3f8a9a66e8fd7": "CORK_CONTROLLER_ROLE"
+            }
+        }
+    },
     "display": {
         "formats": {
-            "grantRole(bytes32,address)": {
+            "grantRole(bytes32 role, address account)": {
+                "$id": "grantRole",
                 "intent": "Grant role",
                 "fields": [
-                    { "label": "Role", "format": "raw", "path": "#.role" },
-                    { "label": "Account", "format": "addressName", "params": { "types": ["eoa","wallet"] }, "path": "#.account" }
-                ],
-                "required": ["#.role", "#.account"]
+                    { "path": "role", "label": "Role", "format": "enum", "params": { "$ref": "$.metadata.enums.roles" }, "visible": "always" },
+                    { "path": "account", "label": "Account", "format": "addressName", "params": { "types": ["eoa", "wallet", "contract"] }, "visible": "always" }
+                ]
             },
-            "revokeRole(bytes32,address)": {
+            "revokeRole(bytes32 role, address account)": {
+                "$id": "revokeRole",
                 "intent": "Revoke role",
                 "fields": [
-                    { "label": "Role", "format": "raw", "path": "#.role" },
-                    { "label": "Account", "format": "addressName", "params": { "types": ["eoa","wallet"] }, "path": "#.account" }
-                ],
-                "required": ["#.role", "#.account"]
+                    { "path": "role", "label": "Role", "format": "enum", "params": { "$ref": "$.metadata.enums.roles" }, "visible": "always" },
+                    { "path": "account", "label": "Account", "format": "addressName", "params": { "types": ["eoa", "wallet", "contract"] }, "visible": "always" }
+                ]
             },
-            "renounceRole(bytes32,address)": {
+            "renounceRole(bytes32 role, address callerConfirmation)": {
+                "$id": "renounceRole",
                 "intent": "Renounce role",
                 "fields": [
-                    { "label": "Role", "format": "raw", "path": "#.role" },
-                    { "label": "Caller confirmation", "format": "addressName", "params": { "types": ["wallet","eoa","contract","token","collection"] }, "path": "#.callerConfirmation" }
-                ],
-                "required": ["#.role", "#.callerConfirmation"]
+                    { "path": "role", "label": "Role", "format": "enum", "params": { "$ref": "$.metadata.enums.roles" }, "visible": "always" },
+                    { "path": "callerConfirmation", "label": "Caller confirmation", "format": "addressName", "params": { "types": ["eoa", "wallet", "contract"] }, "visible": "always" }
+                ]
             }
         }
     }
