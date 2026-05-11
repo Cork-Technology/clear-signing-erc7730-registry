@@ -547,7 +547,7 @@
       },
       "setOnceCorkPoolManager(address corkPoolManager)": {
         "$id": "setOnceCorkPoolManager",
-        "intent": "Set Cork Pool Manager (one-time)",
+        "intent": "Set Cork Pool Manager",
         "fields": [
           {
             "path": "corkPoolManager",

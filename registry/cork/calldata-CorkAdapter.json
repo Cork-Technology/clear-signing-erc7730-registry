@@ -856,24 +856,6 @@
     "contractName": "Cork Adapter",
     "info": {
       "url": "https://www.cork.tech/"
-    },
-    "maps": {
-      "poolCST": {
-        "$keyType": "MarketId (bytes32)",
-        "values": {}
-      },
-      "poolCPT": {
-        "$keyType": "MarketId (bytes32)",
-        "values": {}
-      },
-      "poolCA": {
-        "$keyType": "MarketId (bytes32)",
-        "values": {}
-      },
-      "poolREF": {
-        "$keyType": "MarketId (bytes32)",
-        "values": {}
-      }
     }
   },
   "display": {
@@ -881,7 +863,7 @@
       "erc20Transfer(address token, address receiver, uint256 amount)": {
         "$id": "erc20Transfer",
         "intent": "Transfer ERC-20",
-        "interpolatedIntent": "Transfer {amount} of {token} to {receiver}",
+        "interpolatedIntent": "Transfer to {receiver}",
         "fields": [
           {
             "path": "token",
@@ -920,7 +902,7 @@
       "erc20TransferFrom(address token, address receiver, uint256 amount)": {
         "$id": "erc20TransferFrom",
         "intent": "Pull ERC-20",
-        "interpolatedIntent": "Pull {amount} of {token} to {receiver}",
+        "interpolatedIntent": "Pull to {receiver}",
         "fields": [
           {
             "path": "token",
@@ -984,7 +966,7 @@
       "permit2TransferFrom(address token, address receiver, uint256 amount)": {
         "$id": "permit2TransferFrom",
         "intent": "Permit2 pull",
-        "interpolatedIntent": "Permit2 pull {amount} of {token} to {receiver}",
+        "interpolatedIntent": "Permit2 pull to {receiver}",
         "fields": [
           {
             "path": "token",
@@ -1020,7 +1002,707 @@
           }
         ]
       },
-      "permit2TransferFromWithPermit(tuple permit, bytes signature, address receiver, uint256 amount)": {
+      "safeDeposit(bytes32 poolId, uint256 collateralAssetsIn, address receiver, uint256 minCptAndCstSharesOut, uint256 deadline)": {
+        "$id": "safeDeposit",
+        "intent": "Deposit collateral",
+        "interpolatedIntent": "Deposit to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "collateralAssetsIn",
+            "label": "Collateral",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minCptAndCstSharesOut",
+            "label": "Min cPT and cST out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeMint(bytes32 poolId, uint256 cptAndCstSharesOut, address receiver, uint256 maxCollateralAssetsIn, uint256 deadline)": {
+        "$id": "safeMint",
+        "intent": "Deposit collateral",
+        "interpolatedIntent": "Mint to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "cptAndCstSharesOut",
+            "label": "cPT and cST out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "maxCollateralAssetsIn",
+            "label": "Max collateral in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeExercise(bytes32 poolId, uint256 cstSharesIn, address receiver, uint256 minCollateralAssetsOut, uint256 maxReferenceAssetsIn, uint256 deadline)": {
+        "$id": "safeExercise",
+        "intent": "Exercise cST",
+        "interpolatedIntent": "Exercise to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "cstSharesIn",
+            "label": "cST in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minCollateralAssetsOut",
+            "label": "Min collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "maxReferenceAssetsIn",
+            "label": "Max reference in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeExerciseOther(bytes32 poolId, uint256 referenceAssetsIn, address receiver, uint256 minCollateralAssetsOut, uint256 maxCstSharesIn, uint256 deadline)": {
+        "$id": "safeExerciseOther",
+        "intent": "Exercise cST",
+        "interpolatedIntent": "Exercise to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "referenceAssetsIn",
+            "label": "Reference in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minCollateralAssetsOut",
+            "label": "Min collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "maxCstSharesIn",
+            "label": "Max cST in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeSwap(bytes32 poolId, uint256 collateralAssetsOut, address receiver, uint256 maxCstSharesIn, uint256 maxReferenceAssetsIn, uint256 deadline)": {
+        "$id": "safeSwap",
+        "intent": "Exercise cST",
+        "interpolatedIntent": "Swap to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "collateralAssetsOut",
+            "label": "Collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "maxCstSharesIn",
+            "label": "Max cST in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "maxReferenceAssetsIn",
+            "label": "Max reference in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeRedeem(bytes32 poolId, uint256 cptSharesIn, address owner, address receiver, uint256 minReferenceAssetsOut, uint256 minCollateralAssetsOut, uint256 deadline)": {
+        "$id": "safeRedeem",
+        "intent": "Withdraw cPT",
+        "interpolatedIntent": "Redeem to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "cptSharesIn",
+            "label": "cPT in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "owner",
+            "label": "Owner",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minReferenceAssetsOut",
+            "label": "Min reference out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "minCollateralAssetsOut",
+            "label": "Min collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeWithdraw(bytes32 poolId, uint256 collateralAssetsOut, address owner, address receiver, uint256 maxCptSharesIn, uint256 deadline)": {
+        "$id": "safeWithdraw",
+        "intent": "Withdraw cPT",
+        "interpolatedIntent": "Withdraw to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "collateralAssetsOut",
+            "label": "Collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "owner",
+            "label": "Owner",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "maxCptSharesIn",
+            "label": "Max cPT in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeWithdrawOther(bytes32 poolId, uint256 referenceAssetsOut, address owner, address receiver, uint256 maxCptSharesIn, uint256 deadline)": {
+        "$id": "safeWithdrawOther",
+        "intent": "Withdraw cPT",
+        "interpolatedIntent": "Withdraw to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "referenceAssetsOut",
+            "label": "Reference out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "owner",
+            "label": "Owner",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "maxCptSharesIn",
+            "label": "Max cPT in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeUnwindSwap(bytes32 poolId, uint256 collateralAssetsIn, address receiver, uint256 minReferenceAssetsOut, uint256 minCstSharesOut, uint256 deadline)": {
+        "$id": "safeUnwindSwap",
+        "intent": "Repurchase exercised position",
+        "interpolatedIntent": "Repurchase to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "collateralAssetsIn",
+            "label": "Collateral in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minReferenceAssetsOut",
+            "label": "Min reference out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "minCstSharesOut",
+            "label": "Min cST out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeUnwindExercise(bytes32 poolId, uint256 cstSharesOut, address receiver, uint256 minReferenceAssetsOut, uint256 maxCollateralAssetsIn, uint256 deadline)": {
+        "$id": "safeUnwindExercise",
+        "intent": "Repurchase exercised position",
+        "interpolatedIntent": "Repurchase to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "cstSharesOut",
+            "label": "cST out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minReferenceAssetsOut",
+            "label": "Min reference out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "maxCollateralAssetsIn",
+            "label": "Max collateral in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeUnwindExerciseOther(bytes32 poolId, uint256 referenceAssetsOut, address receiver, uint256 minCstSharesOut, uint256 maxCollateralAssetsIn, uint256 deadline)": {
+        "$id": "safeUnwindExerciseOther",
+        "intent": "Repurchase exercised position",
+        "interpolatedIntent": "Repurchase to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "referenceAssetsOut",
+            "label": "Reference out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minCstSharesOut",
+            "label": "Min cST out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "maxCollateralAssetsIn",
+            "label": "Max collateral in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeUnwindDeposit(bytes32 poolId, uint256 collateralAssetsOut, address owner, address receiver, uint256 maxCptAndCstSharesIn, uint256 deadline)": {
+        "$id": "safeUnwindDeposit",
+        "intent": "Unwind deposit",
+        "interpolatedIntent": "Unwind to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "collateralAssetsOut",
+            "label": "Collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "owner",
+            "label": "Owner",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "maxCptAndCstSharesIn",
+            "label": "Max cPT and cST in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeUnwindMint(bytes32 poolId, uint256 cptAndCstSharesIn, address owner, address receiver, uint256 minCollateralAssetsOut, uint256 deadline)": {
+        "$id": "safeUnwindMint",
+        "intent": "Unwind deposit",
+        "interpolatedIntent": "Unwind to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "cptAndCstSharesIn",
+            "label": "cPT and cST in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "owner",
+            "label": "Owner",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minCollateralAssetsOut",
+            "label": "Min collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "permit2TransferFromWithPermit(((address,uint256),uint256,uint256) permit, bytes signature, address receiver, uint256 amount)": {
         "$id": "permit2TransferFromWithPermit",
         "intent": "Permit2 pull with signature",
         "fields": [
@@ -1081,904 +1763,6 @@
             "format": "tokenAmount",
             "params": {
               "tokenPath": "permit.permitted.token"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeDeposit(bytes32 poolId, uint256 collateralAssetsIn, address receiver, uint256 minCptAndCstSharesOut, uint256 deadline)": {
-        "$id": "safeDeposit",
-        "intent": "Deposit collateral",
-        "interpolatedIntent": "Deposit collateral into pool {poolId} for {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "collateralAssetsIn",
-            "label": "Collateral",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "minCptAndCstSharesOut",
-            "label": "Min cPT and cST out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCPT",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeMint(bytes32 poolId, uint256 cptAndCstSharesOut, address receiver, uint256 maxCollateralAssetsIn, uint256 deadline)": {
-        "$id": "safeMint",
-        "intent": "Deposit collateral",
-        "interpolatedIntent": "Mint cPT and cST from pool {poolId} for {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "cptAndCstSharesOut",
-            "label": "cPT and cST out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCPT",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "maxCollateralAssetsIn",
-            "label": "Max collateral in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeExercise(bytes32 poolId, uint256 cstSharesIn, address receiver, uint256 minCollateralAssetsOut, uint256 maxReferenceAssetsIn, uint256 deadline)": {
-        "$id": "safeExercise",
-        "intent": "Exercise cST",
-        "interpolatedIntent": "Exercise cST on pool {poolId}, send collateral to {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "cstSharesIn",
-            "label": "cST in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCST",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "minCollateralAssetsOut",
-            "label": "Min collateral out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "maxReferenceAssetsIn",
-            "label": "Max reference in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolREF",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeExerciseOther(bytes32 poolId, uint256 referenceAssetsIn, address receiver, uint256 minCollateralAssetsOut, uint256 maxCstSharesIn, uint256 deadline)": {
-        "$id": "safeExerciseOther",
-        "intent": "Exercise cST",
-        "interpolatedIntent": "Exercise reference on pool {poolId}, send collateral to {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "referenceAssetsIn",
-            "label": "Reference in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolREF",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "minCollateralAssetsOut",
-            "label": "Min collateral out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "maxCstSharesIn",
-            "label": "Max cST in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCST",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeSwap(bytes32 poolId, uint256 collateralAssetsOut, address receiver, uint256 maxCstSharesIn, uint256 maxReferenceAssetsIn, uint256 deadline)": {
-        "$id": "safeSwap",
-        "intent": "Exercise cST",
-        "interpolatedIntent": "Swap reference for collateral on pool {poolId} to {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "collateralAssetsOut",
-            "label": "Collateral out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "maxCstSharesIn",
-            "label": "Max cST in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCST",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "maxReferenceAssetsIn",
-            "label": "Max reference in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolREF",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeRedeem(bytes32 poolId, uint256 cptSharesIn, address owner, address receiver, uint256 minReferenceAssetsOut, uint256 minCollateralAssetsOut, uint256 deadline)": {
-        "$id": "safeRedeem",
-        "intent": "Withdraw cPT",
-        "interpolatedIntent": "Redeem cPT from pool {poolId}, send to {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "cptSharesIn",
-            "label": "cPT in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCPT",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "owner",
-            "label": "Owner",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "minReferenceAssetsOut",
-            "label": "Min reference out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolREF",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "minCollateralAssetsOut",
-            "label": "Min collateral out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeWithdraw(bytes32 poolId, uint256 collateralAssetsOut, address owner, address receiver, uint256 maxCptSharesIn, uint256 deadline)": {
-        "$id": "safeWithdraw",
-        "intent": "Withdraw cPT",
-        "interpolatedIntent": "Withdraw collateral from pool {poolId} to {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "collateralAssetsOut",
-            "label": "Collateral out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "owner",
-            "label": "Owner",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "maxCptSharesIn",
-            "label": "Max cPT in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCPT",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeWithdrawOther(bytes32 poolId, uint256 referenceAssetsOut, address owner, address receiver, uint256 maxCptSharesIn, uint256 deadline)": {
-        "$id": "safeWithdrawOther",
-        "intent": "Withdraw cPT",
-        "interpolatedIntent": "Withdraw reference from pool {poolId} to {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "referenceAssetsOut",
-            "label": "Reference out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolREF",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "owner",
-            "label": "Owner",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "maxCptSharesIn",
-            "label": "Max cPT in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCPT",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeUnwindSwap(bytes32 poolId, uint256 collateralAssetsIn, address receiver, uint256 minReferenceAssetsOut, uint256 minCstSharesOut, uint256 deadline)": {
-        "$id": "safeUnwindSwap",
-        "intent": "Repurchase exercised position",
-        "interpolatedIntent": "Repurchase on pool {poolId}, send to {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "collateralAssetsIn",
-            "label": "Collateral in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "minReferenceAssetsOut",
-            "label": "Min reference out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolREF",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "minCstSharesOut",
-            "label": "Min cST out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCST",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeUnwindExercise(bytes32 poolId, uint256 cstSharesOut, address receiver, uint256 minReferenceAssetsOut, uint256 maxCollateralAssetsIn, uint256 deadline)": {
-        "$id": "safeUnwindExercise",
-        "intent": "Repurchase exercised position",
-        "interpolatedIntent": "Repurchase cST on pool {poolId} to {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "cstSharesOut",
-            "label": "cST out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCST",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "minReferenceAssetsOut",
-            "label": "Min reference out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolREF",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "maxCollateralAssetsIn",
-            "label": "Max collateral in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeUnwindExerciseOther(bytes32 poolId, uint256 referenceAssetsOut, address receiver, uint256 minCstSharesOut, uint256 maxCollateralAssetsIn, uint256 deadline)": {
-        "$id": "safeUnwindExerciseOther",
-        "intent": "Repurchase exercised position",
-        "interpolatedIntent": "Repurchase reference on pool {poolId} to {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "referenceAssetsOut",
-            "label": "Reference out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolREF",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "minCstSharesOut",
-            "label": "Min cST out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCST",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "maxCollateralAssetsIn",
-            "label": "Max collateral in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeUnwindDeposit(bytes32 poolId, uint256 collateralAssetsOut, address owner, address receiver, uint256 maxCptAndCstSharesIn, uint256 deadline)": {
-        "$id": "safeUnwindDeposit",
-        "intent": "Unwind deposit",
-        "interpolatedIntent": "Unwind deposit on pool {poolId}, collateral to {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "collateralAssetsOut",
-            "label": "Collateral out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "owner",
-            "label": "Owner",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "maxCptAndCstSharesIn",
-            "label": "Max cPT and cST in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCPT",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          }
-        ]
-      },
-      "safeUnwindMint(bytes32 poolId, uint256 cptAndCstSharesIn, address owner, address receiver, uint256 minCollateralAssetsOut, uint256 deadline)": {
-        "$id": "safeUnwindMint",
-        "intent": "Unwind deposit",
-        "interpolatedIntent": "Burn cPT and cST on pool {poolId}, collateral to {receiver}",
-        "fields": [
-          {
-            "path": "poolId",
-            "label": "Pool ID",
-            "format": "raw",
-            "visible": "always"
-          },
-          {
-            "path": "cptAndCstSharesIn",
-            "label": "cPT and cST in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCPT",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "owner",
-            "label": "Owner",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "receiver",
-            "label": "Receiver",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "eoa",
-                "wallet"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "minCollateralAssetsOut",
-            "label": "Min collateral out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
-            "visible": "always"
-          },
-          {
-            "path": "deadline",
-            "label": "Deadline",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
             },
             "visible": "always"
           }

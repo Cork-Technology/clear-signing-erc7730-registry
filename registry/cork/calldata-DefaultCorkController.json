@@ -861,120 +861,6 @@
           }
         ]
       },
-      "createNewPool(tuple(address,address,uint256,uint256,uint256,uint256,uint256,address) pool, uint256 unwindSwapFeePercentage, uint256 swapFeePercentage, bool isWhitelistEnabled)": {
-        "$id": "createNewPool",
-        "intent": "Create new market",
-        "fields": [
-          {
-            "path": "pool.collateralAsset",
-            "label": "Collateral asset",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "token"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "pool.referenceAsset",
-            "label": "Reference asset",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "token"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "pool.expiryTimestamp",
-            "label": "Expiry",
-            "format": "date",
-            "params": {
-              "encoding": "timestamp"
-            },
-            "visible": "always"
-          },
-          {
-            "path": "pool.rateMin",
-            "label": "Rate floor",
-            "format": "unit",
-            "params": {
-              "base": "",
-              "decimals": 18
-            },
-            "visible": "always"
-          },
-          {
-            "path": "pool.rateMax",
-            "label": "Rate ceiling",
-            "format": "unit",
-            "params": {
-              "base": "",
-              "decimals": 18
-            },
-            "visible": "always"
-          },
-          {
-            "path": "pool.rateChangePerDayMax",
-            "label": "Daily rate cap",
-            "format": "unit",
-            "params": {
-              "base": "",
-              "decimals": 18
-            },
-            "visible": "always"
-          },
-          {
-            "path": "pool.rateChangeCapacityMax",
-            "label": "Burst rate cap",
-            "format": "unit",
-            "params": {
-              "base": "",
-              "decimals": 18
-            },
-            "visible": "always"
-          },
-          {
-            "path": "pool.rateOracle",
-            "label": "Rate oracle",
-            "format": "addressName",
-            "params": {
-              "types": [
-                "contract"
-              ]
-            },
-            "visible": "always"
-          },
-          {
-            "path": "unwindSwapFeePercentage",
-            "label": "Repurchase fee",
-            "format": "unit",
-            "params": {
-              "base": "",
-              "decimals": 18
-            },
-            "visible": "always"
-          },
-          {
-            "path": "swapFeePercentage",
-            "label": "Exercise swap fee",
-            "format": "unit",
-            "params": {
-              "base": "",
-              "decimals": 18
-            },
-            "visible": "always"
-          },
-          {
-            "path": "isWhitelistEnabled",
-            "label": "Whitelist enabled",
-            "format": "raw",
-            "visible": "always"
-          }
-        ]
-      },
       "pause()": {
         "$id": "pause",
         "intent": "Pause market creation",
@@ -1129,7 +1015,7 @@
       },
       "setOnceCorkPoolManager(address corkPoolManagerAddress)": {
         "$id": "setOnceCorkPoolManager",
-        "intent": "Set Cork Pool Manager (one-time)",
+        "intent": "Set Cork Pool Manager",
         "fields": [
           {
             "path": "corkPoolManagerAddress",
@@ -1220,6 +1106,120 @@
               "base": "",
               "decimals": 18
             },
+            "visible": "always"
+          }
+        ]
+      },
+      "createNewPool((address,address,uint256,uint256,uint256,uint256,uint256,address) pool, uint256 unwindSwapFeePercentage, uint256 swapFeePercentage, bool isWhitelistEnabled)": {
+        "$id": "createNewPool",
+        "intent": "Create new market",
+        "fields": [
+          {
+            "path": "pool.collateralAsset",
+            "label": "Collateral asset",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "token"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "pool.referenceAsset",
+            "label": "Reference asset",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "token"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "pool.expiryTimestamp",
+            "label": "Expiry",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          },
+          {
+            "path": "pool.rateMin",
+            "label": "Rate floor",
+            "format": "unit",
+            "params": {
+              "base": "",
+              "decimals": 18
+            },
+            "visible": "always"
+          },
+          {
+            "path": "pool.rateMax",
+            "label": "Rate ceiling",
+            "format": "unit",
+            "params": {
+              "base": "",
+              "decimals": 18
+            },
+            "visible": "always"
+          },
+          {
+            "path": "pool.rateChangePerDayMax",
+            "label": "Daily rate cap",
+            "format": "unit",
+            "params": {
+              "base": "",
+              "decimals": 18
+            },
+            "visible": "always"
+          },
+          {
+            "path": "pool.rateChangeCapacityMax",
+            "label": "Burst rate cap",
+            "format": "unit",
+            "params": {
+              "base": "",
+              "decimals": 18
+            },
+            "visible": "always"
+          },
+          {
+            "path": "pool.rateOracle",
+            "label": "Rate oracle",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "contract"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "unwindSwapFeePercentage",
+            "label": "Repurchase fee",
+            "format": "unit",
+            "params": {
+              "base": "",
+              "decimals": 18
+            },
+            "visible": "always"
+          },
+          {
+            "path": "swapFeePercentage",
+            "label": "Exercise swap fee",
+            "format": "unit",
+            "params": {
+              "base": "",
+              "decimals": 18
+            },
+            "visible": "always"
+          },
+          {
+            "path": "isWhitelistEnabled",
+            "label": "Whitelist enabled",
+            "format": "raw",
             "visible": "always"
           }
         ]

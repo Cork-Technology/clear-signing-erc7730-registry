@@ -147,7 +147,7 @@
   },
   "display": {
     "formats": {
-      "deployPoolShares(tuple(address,address,uint256,uint256,uint256,uint256,uint256,address) poolParams, bytes32 poolId)": {
+      "deployPoolShares((address,address,uint256,uint256,uint256,uint256,uint256,address) poolParams, bytes32 poolId)": {
         "$id": "deployPoolShares",
         "intent": "Deploy pool share tokens",
         "fields": [

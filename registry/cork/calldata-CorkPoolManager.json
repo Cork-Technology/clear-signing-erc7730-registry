@@ -1882,24 +1882,6 @@
     "contractName": "Cork Pool Manager",
     "info": {
       "url": "https://www.cork.tech/"
-    },
-    "maps": {
-      "poolCST": {
-        "$keyType": "MarketId (bytes32)",
-        "values": {}
-      },
-      "poolCPT": {
-        "$keyType": "MarketId (bytes32)",
-        "values": {}
-      },
-      "poolCA": {
-        "$keyType": "MarketId (bytes32)",
-        "values": {}
-      },
-      "poolREF": {
-        "$keyType": "MarketId (bytes32)",
-        "values": {}
-      }
     }
   },
   "display": {
@@ -1995,7 +1977,7 @@
       "deposit(bytes32 poolId, uint256 collateralAssetsIn, address receiver)": {
         "$id": "deposit",
         "intent": "Deposit collateral",
-        "interpolatedIntent": "Deposit collateral into pool {poolId} for {receiver}",
+        "interpolatedIntent": "Deposit to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2006,13 +1988,7 @@
           {
             "path": "collateralAssetsIn",
             "label": "Collateral",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
@@ -2032,7 +2008,7 @@
       "mint(bytes32 poolId, uint256 cptAndCstSharesOut, address receiver)": {
         "$id": "mint",
         "intent": "Deposit collateral",
-        "interpolatedIntent": "Mint cPT and cST from pool {poolId} for {receiver}",
+        "interpolatedIntent": "Mint to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2043,13 +2019,7 @@
           {
             "path": "cptAndCstSharesOut",
             "label": "cPT and cST out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCPT",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
@@ -2069,7 +2039,7 @@
       "exercise(bytes32 poolId, uint256 cstSharesIn, address receiver)": {
         "$id": "exercise",
         "intent": "Exercise cST",
-        "interpolatedIntent": "Exercise cST from pool {poolId}, send collateral to {receiver}",
+        "interpolatedIntent": "Exercise to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2080,13 +2050,7 @@
           {
             "path": "cstSharesIn",
             "label": "cST in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCST",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
@@ -2106,7 +2070,7 @@
       "exerciseOther(bytes32 poolId, uint256 referenceAssetsIn, address receiver)": {
         "$id": "exerciseOther",
         "intent": "Exercise cST",
-        "interpolatedIntent": "Exercise reference assets from pool {poolId}, send collateral to {receiver}",
+        "interpolatedIntent": "Exercise to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2117,13 +2081,7 @@
           {
             "path": "referenceAssetsIn",
             "label": "Reference in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolREF",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
@@ -2143,7 +2101,7 @@
       "swap(bytes32 poolId, uint256 collateralAssetsOut, address receiver)": {
         "$id": "swap",
         "intent": "Exercise cST",
-        "interpolatedIntent": "Swap reference for collateral on pool {poolId}, send to {receiver}",
+        "interpolatedIntent": "Swap to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2154,13 +2112,7 @@
           {
             "path": "collateralAssetsOut",
             "label": "Collateral out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
@@ -2180,7 +2132,7 @@
       "unwindSwap(bytes32 poolId, uint256 collateralAssetsIn, address receiver)": {
         "$id": "unwindSwap",
         "intent": "Repurchase exercised position",
-        "interpolatedIntent": "Repurchase from pool {poolId}, send to {receiver}",
+        "interpolatedIntent": "Repurchase to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2191,13 +2143,7 @@
           {
             "path": "collateralAssetsIn",
             "label": "Collateral in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
@@ -2217,7 +2163,7 @@
       "unwindExercise(bytes32 poolId, uint256 cstSharesOut, address receiver)": {
         "$id": "unwindExercise",
         "intent": "Repurchase exercised position",
-        "interpolatedIntent": "Repurchase cST from pool {poolId} to {receiver}",
+        "interpolatedIntent": "Repurchase to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2228,13 +2174,7 @@
           {
             "path": "cstSharesOut",
             "label": "cST out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCST",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
@@ -2254,7 +2194,7 @@
       "unwindExerciseOther(bytes32 poolId, uint256 referenceAssetsOut, address receiver)": {
         "$id": "unwindExerciseOther",
         "intent": "Repurchase exercised position",
-        "interpolatedIntent": "Repurchase reference assets from pool {poolId} to {receiver}",
+        "interpolatedIntent": "Repurchase to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2265,13 +2205,7 @@
           {
             "path": "referenceAssetsOut",
             "label": "Reference out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolREF",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
@@ -2291,7 +2225,7 @@
       "unwindDeposit(bytes32 poolId, uint256 collateralAssetsOut, address owner, address receiver)": {
         "$id": "unwindDeposit",
         "intent": "Unwind deposit",
-        "interpolatedIntent": "Unwind deposit on pool {poolId}, collateral to {receiver}",
+        "interpolatedIntent": "Unwind to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2302,13 +2236,7 @@
           {
             "path": "collateralAssetsOut",
             "label": "Collateral out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
@@ -2340,7 +2268,7 @@
       "unwindMint(bytes32 poolId, uint256 cptAndCstSharesIn, address owner, address receiver)": {
         "$id": "unwindMint",
         "intent": "Unwind deposit",
-        "interpolatedIntent": "Burn cPT and cST on pool {poolId}, collateral to {receiver}",
+        "interpolatedIntent": "Unwind to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2351,13 +2279,7 @@
           {
             "path": "cptAndCstSharesIn",
             "label": "cPT and cST in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCPT",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
@@ -2389,7 +2311,7 @@
       "redeem(bytes32 poolId, uint256 cptSharesIn, address owner, address receiver)": {
         "$id": "redeem",
         "intent": "Withdraw cPT",
-        "interpolatedIntent": "Redeem cPT from pool {poolId}, collateral to {receiver}",
+        "interpolatedIntent": "Redeem to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2400,13 +2322,7 @@
           {
             "path": "cptSharesIn",
             "label": "cPT in",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCPT",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
@@ -2438,7 +2354,7 @@
       "withdraw(bytes32 poolId, uint256 collateralAssetsOut, address owner, address receiver)": {
         "$id": "withdraw",
         "intent": "Withdraw cPT",
-        "interpolatedIntent": "Withdraw collateral from pool {poolId} to {receiver}",
+        "interpolatedIntent": "Withdraw to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2449,13 +2365,7 @@
           {
             "path": "collateralAssetsOut",
             "label": "Collateral out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolCA",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
@@ -2487,7 +2397,7 @@
       "withdrawOther(bytes32 poolId, uint256 referenceAssetsOut, address owner, address receiver)": {
         "$id": "withdrawOther",
         "intent": "Withdraw cPT",
-        "interpolatedIntent": "Withdraw reference assets from pool {poolId} to {receiver}",
+        "interpolatedIntent": "Withdraw to {receiver}",
         "fields": [
           {
             "path": "poolId",
@@ -2498,13 +2408,7 @@
           {
             "path": "referenceAssetsOut",
             "label": "Reference out",
-            "format": "tokenAmount",
-            "params": {
-              "token": {
-                "map": "$.metadata.maps.poolREF",
-                "keyPath": "poolId"
-              }
-            },
+            "format": "raw",
             "visible": "always"
           },
           {
