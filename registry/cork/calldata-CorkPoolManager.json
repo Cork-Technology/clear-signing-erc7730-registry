@@ -1973,7 +1973,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "New market with {rateOracle}"
+        "interpolatedIntent": "Create market with {rateOracle}"
       },
       "deposit(bytes32 poolId, uint256 collateralAssetsIn, address receiver)": {
         "$id": "deposit",
@@ -2553,7 +2553,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "Factory to {newSharesFactory}"
+        "interpolatedIntent": "Set factory to {newSharesFactory}"
       },
       "setTreasuryAddress(address newTreasury)": {
         "$id": "setTreasuryAddress",
@@ -2573,7 +2573,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "Treasury to {newTreasury}"
+        "interpolatedIntent": "Set treasury to {newTreasury}"
       },
       "updateSwapFeePercentage(bytes32 poolId, uint256 newSwapFeePercentage)": {
         "$id": "updateSwapFeePercentage",
@@ -2596,7 +2596,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "Swap fee on {poolId}"
+        "interpolatedIntent": "Update swap fee on {poolId}"
       },
       "updateUnwindSwapFeePercentage(bytes32 poolId, uint256 newUnwindSwapFeePercentage)": {
         "$id": "updateUnwindSwapFeePercentage",
@@ -2619,7 +2619,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "Repurchase fee on {poolId}"
+        "interpolatedIntent": "Update repurchase fee on {poolId}"
       }
     }
   }

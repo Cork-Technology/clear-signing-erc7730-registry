@@ -1067,7 +1067,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "Factory to {sharesFactory}"
+        "interpolatedIntent": "Set factory to {sharesFactory}"
       },
       "setTreasury(address treasuryAddress)": {
         "$id": "setTreasury",
@@ -1087,7 +1087,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "Treasury to {treasuryAddress}"
+        "interpolatedIntent": "Set treasury to {treasuryAddress}"
       },
       "updateSwapFeePercentage(bytes32 id, uint256 newSwapFeePercentage)": {
         "$id": "updateSwapFeePercentage",
@@ -1110,7 +1110,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "Swap fee on {id}"
+        "interpolatedIntent": "Update swap fee on {id}"
       },
       "updateUnwindSwapFeePercentage(bytes32 id, uint256 newUnwindSwapFeePercentage)": {
         "$id": "updateUnwindSwapFeePercentage",
@@ -1133,7 +1133,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "Repurchase fee on {id}"
+        "interpolatedIntent": "Update repurchase fee on {id}"
       },
       "createNewPool((address,address,uint256,uint256,uint256,uint256,uint256,address) pool, uint256 unwindSwapFeePercentage, uint256 swapFeePercentage, bool isWhitelistEnabled)": {
         "$id": "createNewPool",
@@ -1248,7 +1248,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "New market: {pool.rateOracle}"
+        "interpolatedIntent": "Create market with {pool.rateOracle}"
       }
     }
   }

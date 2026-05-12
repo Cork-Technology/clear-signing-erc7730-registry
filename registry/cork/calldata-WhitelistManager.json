@@ -568,7 +568,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "Manager: {corkPoolManager}"
+        "interpolatedIntent": "Set pool manager to {corkPoolManager}"
       }
     }
   }
