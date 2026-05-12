@@ -1888,7 +1888,7 @@
     "formats": {
       "createNewPool(address collateralAsset, address referenceAsset, uint256 expiryTimestamp, uint256 rateMin, uint256 rateMax, uint256 rateChangePerDayMax, uint256 rateChangeCapacityMax, address rateOracle)": {
         "$id": "createNewPool",
-        "intent": "Create new market",
+        "intent": "Create a new market",
         "fields": [
           {
             "path": "collateralAsset",
@@ -1973,7 +1973,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "Create market with {rateOracle}"
+        "interpolatedIntent": "Create a new market"
       },
       "deposit(bytes32 poolId, uint256 collateralAssetsIn, address receiver)": {
         "$id": "deposit",

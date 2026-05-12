@@ -1137,7 +1137,7 @@
       },
       "createNewPool((address,address,uint256,uint256,uint256,uint256,uint256,address) pool, uint256 unwindSwapFeePercentage, uint256 swapFeePercentage, bool isWhitelistEnabled)": {
         "$id": "createNewPool",
-        "intent": "Create new market",
+        "intent": "Create a new market",
         "fields": [
           {
             "path": "pool.collateralAsset",
@@ -1248,7 +1248,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "Create market with {pool.rateOracle}"
+        "interpolatedIntent": "Create a new market"
       }
     }
   }
