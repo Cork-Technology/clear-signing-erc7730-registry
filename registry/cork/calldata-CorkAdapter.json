@@ -1,0 +1,1774 @@
+{
+  "$schema": "../../specs/erc7730-v2.schema.json",
+  "includes": "common-ownership.json",
+  "context": {
+    "$id": "CorkAdapter",
+    "contract": {
+      "deployments": [
+        {
+          "chainId": 1,
+          "address": "0xCCcCcCCCcccCBaD6F772a511B337d9CCc9570407"
+        }
+      ],
+      "abi": [
+        {
+          "type": "function",
+          "name": "BUNDLER3",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "CORK",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "address",
+              "internalType": "contract IPoolManager"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "PERMIT2",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "address",
+              "internalType": "contract IPermit2"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "WHITELIST_MANAGER",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "address",
+              "internalType": "contract IWhitelistManager"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "erc20Transfer",
+          "inputs": [
+            {
+              "name": "token",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "receiver",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "amount",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "erc20TransferFrom",
+          "inputs": [
+            {
+              "name": "token",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "receiver",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "amount",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "initialize",
+          "inputs": [
+            {
+              "name": "ensOwner",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "bundler3",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "cork",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "whitelistManager",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "nativeTransfer",
+          "inputs": [
+            {
+              "name": "receiver",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "amount",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "owner",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "permit2TransferFrom",
+          "inputs": [
+            {
+              "name": "token",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "receiver",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "amount",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "permit2TransferFromWithPermit",
+          "inputs": [
+            {
+              "name": "permit",
+              "type": "tuple",
+              "internalType": "struct ISignatureTransfer.PermitTransferFrom",
+              "components": [
+                {
+                  "name": "permitted",
+                  "type": "tuple",
+                  "internalType": "struct ISignatureTransfer.TokenPermissions",
+                  "components": [
+                    {
+                      "name": "token",
+                      "type": "address",
+                      "internalType": "address"
+                    },
+                    {
+                      "name": "amount",
+                      "type": "uint256",
+                      "internalType": "uint256"
+                    }
+                  ]
+                },
+                {
+                  "name": "nonce",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            },
+            {
+              "name": "signature",
+              "type": "bytes",
+              "internalType": "bytes"
+            },
+            {
+              "name": "receiver",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "amount",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "renounceOwnership",
+          "inputs": [],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeDeposit",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeDepositParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "collateralAssetsIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "minCptAndCstSharesOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeExercise",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeExerciseParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "cstSharesIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "minCollateralAssetsOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "maxReferenceAssetsIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeExerciseOther",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeExerciseOtherParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "referenceAssetsIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "minCollateralAssetsOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "maxCstSharesIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeMint",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeMintParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "cptAndCstSharesOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "maxCollateralAssetsIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeRedeem",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeRedeemParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "cptSharesIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "owner",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "minReferenceAssetsOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "minCollateralAssetsOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeSwap",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeSwapParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "collateralAssetsOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "maxCstSharesIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "maxReferenceAssetsIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeUnwindDeposit",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeUnwindDepositParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "collateralAssetsOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "owner",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "maxCptAndCstSharesIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeUnwindExercise",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeUnwindExerciseParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "cstSharesOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "minReferenceAssetsOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "maxCollateralAssetsIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeUnwindExerciseOther",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeUnwindExerciseOtherParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "referenceAssetsOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "minCstSharesOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "maxCollateralAssetsIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeUnwindMint",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeUnwindMintParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "cptAndCstSharesIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "owner",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "minCollateralAssetsOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeUnwindSwap",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeUnwindSwapParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "collateralAssetsIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "minReferenceAssetsOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "minCstSharesOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeWithdraw",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeWithdrawParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "collateralAssetsOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "owner",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "maxCptSharesIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "safeWithdrawOther",
+          "inputs": [
+            {
+              "name": "params",
+              "type": "tuple",
+              "internalType": "struct ICorkAdapter.SafeWithdrawOtherParams",
+              "components": [
+                {
+                  "name": "poolId",
+                  "type": "bytes32",
+                  "internalType": "MarketId"
+                },
+                {
+                  "name": "referenceAssetsOut",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "owner",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "receiver",
+                  "type": "address",
+                  "internalType": "address"
+                },
+                {
+                  "name": "maxCptSharesIn",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                },
+                {
+                  "name": "deadline",
+                  "type": "uint256",
+                  "internalType": "uint256"
+                }
+              ]
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "transferOwnership",
+          "inputs": [
+            {
+              "name": "newOwner",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "owner": "Cork Protocol",
+    "contractName": "Cork Adapter",
+    "info": {
+      "url": "https://www.cork.tech/"
+    }
+  },
+  "display": {
+    "formats": {
+      "erc20Transfer(address token, address receiver, uint256 amount)": {
+        "$id": "erc20Transfer",
+        "intent": "Transfer ERC-20",
+        "interpolatedIntent": "Transfer to {receiver}",
+        "fields": [
+          {
+            "path": "token",
+            "label": "Token",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "token"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "amount",
+            "label": "Amount",
+            "format": "tokenAmount",
+            "params": {
+              "tokenPath": "token"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "erc20TransferFrom(address token, address receiver, uint256 amount)": {
+        "$id": "erc20TransferFrom",
+        "intent": "Pull ERC-20",
+        "interpolatedIntent": "Pull to {receiver}",
+        "fields": [
+          {
+            "path": "token",
+            "label": "Token",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "token"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "amount",
+            "label": "Amount",
+            "format": "tokenAmount",
+            "params": {
+              "tokenPath": "token"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "nativeTransfer(address receiver, uint256 amount)": {
+        "$id": "nativeTransfer",
+        "intent": "Transfer native currency",
+        "interpolatedIntent": "Send {amount} to {receiver}",
+        "fields": [
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "amount",
+            "label": "Amount",
+            "format": "amount",
+            "visible": "always"
+          }
+        ]
+      },
+      "permit2TransferFrom(address token, address receiver, uint256 amount)": {
+        "$id": "permit2TransferFrom",
+        "intent": "Permit2 pull",
+        "interpolatedIntent": "Permit2 pull to {receiver}",
+        "fields": [
+          {
+            "path": "token",
+            "label": "Token",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "token"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "amount",
+            "label": "Amount",
+            "format": "tokenAmount",
+            "params": {
+              "tokenPath": "token"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeDeposit(bytes32 poolId, uint256 collateralAssetsIn, address receiver, uint256 minCptAndCstSharesOut, uint256 deadline)": {
+        "$id": "safeDeposit",
+        "intent": "Deposit collateral",
+        "interpolatedIntent": "Deposit to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "collateralAssetsIn",
+            "label": "Collateral",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minCptAndCstSharesOut",
+            "label": "Min cPT and cST out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeMint(bytes32 poolId, uint256 cptAndCstSharesOut, address receiver, uint256 maxCollateralAssetsIn, uint256 deadline)": {
+        "$id": "safeMint",
+        "intent": "Deposit collateral",
+        "interpolatedIntent": "Mint to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "cptAndCstSharesOut",
+            "label": "cPT and cST out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "maxCollateralAssetsIn",
+            "label": "Max collateral in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeExercise(bytes32 poolId, uint256 cstSharesIn, address receiver, uint256 minCollateralAssetsOut, uint256 maxReferenceAssetsIn, uint256 deadline)": {
+        "$id": "safeExercise",
+        "intent": "Exercise cST",
+        "interpolatedIntent": "Exercise to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "cstSharesIn",
+            "label": "cST in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minCollateralAssetsOut",
+            "label": "Min collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "maxReferenceAssetsIn",
+            "label": "Max reference in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeExerciseOther(bytes32 poolId, uint256 referenceAssetsIn, address receiver, uint256 minCollateralAssetsOut, uint256 maxCstSharesIn, uint256 deadline)": {
+        "$id": "safeExerciseOther",
+        "intent": "Exercise cST",
+        "interpolatedIntent": "Exercise to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "referenceAssetsIn",
+            "label": "Reference in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minCollateralAssetsOut",
+            "label": "Min collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "maxCstSharesIn",
+            "label": "Max cST in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeSwap(bytes32 poolId, uint256 collateralAssetsOut, address receiver, uint256 maxCstSharesIn, uint256 maxReferenceAssetsIn, uint256 deadline)": {
+        "$id": "safeSwap",
+        "intent": "Exercise cST",
+        "interpolatedIntent": "Swap to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "collateralAssetsOut",
+            "label": "Collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "maxCstSharesIn",
+            "label": "Max cST in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "maxReferenceAssetsIn",
+            "label": "Max reference in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeRedeem(bytes32 poolId, uint256 cptSharesIn, address owner, address receiver, uint256 minReferenceAssetsOut, uint256 minCollateralAssetsOut, uint256 deadline)": {
+        "$id": "safeRedeem",
+        "intent": "Withdraw cPT",
+        "interpolatedIntent": "Redeem to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "cptSharesIn",
+            "label": "cPT in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "owner",
+            "label": "Owner",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minReferenceAssetsOut",
+            "label": "Min reference out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "minCollateralAssetsOut",
+            "label": "Min collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeWithdraw(bytes32 poolId, uint256 collateralAssetsOut, address owner, address receiver, uint256 maxCptSharesIn, uint256 deadline)": {
+        "$id": "safeWithdraw",
+        "intent": "Withdraw cPT",
+        "interpolatedIntent": "Withdraw to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "collateralAssetsOut",
+            "label": "Collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "owner",
+            "label": "Owner",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "maxCptSharesIn",
+            "label": "Max cPT in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeWithdrawOther(bytes32 poolId, uint256 referenceAssetsOut, address owner, address receiver, uint256 maxCptSharesIn, uint256 deadline)": {
+        "$id": "safeWithdrawOther",
+        "intent": "Withdraw cPT",
+        "interpolatedIntent": "Withdraw to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "referenceAssetsOut",
+            "label": "Reference out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "owner",
+            "label": "Owner",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "maxCptSharesIn",
+            "label": "Max cPT in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeUnwindSwap(bytes32 poolId, uint256 collateralAssetsIn, address receiver, uint256 minReferenceAssetsOut, uint256 minCstSharesOut, uint256 deadline)": {
+        "$id": "safeUnwindSwap",
+        "intent": "Repurchase exercised position",
+        "interpolatedIntent": "Repurchase to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "collateralAssetsIn",
+            "label": "Collateral in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minReferenceAssetsOut",
+            "label": "Min reference out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "minCstSharesOut",
+            "label": "Min cST out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeUnwindExercise(bytes32 poolId, uint256 cstSharesOut, address receiver, uint256 minReferenceAssetsOut, uint256 maxCollateralAssetsIn, uint256 deadline)": {
+        "$id": "safeUnwindExercise",
+        "intent": "Repurchase exercised position",
+        "interpolatedIntent": "Repurchase to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "cstSharesOut",
+            "label": "cST out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minReferenceAssetsOut",
+            "label": "Min reference out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "maxCollateralAssetsIn",
+            "label": "Max collateral in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeUnwindExerciseOther(bytes32 poolId, uint256 referenceAssetsOut, address receiver, uint256 minCstSharesOut, uint256 maxCollateralAssetsIn, uint256 deadline)": {
+        "$id": "safeUnwindExerciseOther",
+        "intent": "Repurchase exercised position",
+        "interpolatedIntent": "Repurchase to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "referenceAssetsOut",
+            "label": "Reference out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minCstSharesOut",
+            "label": "Min cST out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "maxCollateralAssetsIn",
+            "label": "Max collateral in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeUnwindDeposit(bytes32 poolId, uint256 collateralAssetsOut, address owner, address receiver, uint256 maxCptAndCstSharesIn, uint256 deadline)": {
+        "$id": "safeUnwindDeposit",
+        "intent": "Unwind deposit",
+        "interpolatedIntent": "Unwind to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "collateralAssetsOut",
+            "label": "Collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "owner",
+            "label": "Owner",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "maxCptAndCstSharesIn",
+            "label": "Max cPT and cST in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "safeUnwindMint(bytes32 poolId, uint256 cptAndCstSharesIn, address owner, address receiver, uint256 minCollateralAssetsOut, uint256 deadline)": {
+        "$id": "safeUnwindMint",
+        "intent": "Unwind deposit",
+        "interpolatedIntent": "Unwind to {receiver}",
+        "fields": [
+          {
+            "path": "poolId",
+            "label": "Pool ID",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "cptAndCstSharesIn",
+            "label": "cPT and cST in",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "owner",
+            "label": "Owner",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "minCollateralAssetsOut",
+            "label": "Min collateral out",
+            "format": "raw",
+            "visible": "always"
+          },
+          {
+            "path": "deadline",
+            "label": "Deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          }
+        ]
+      },
+      "permit2TransferFromWithPermit(((address,uint256),uint256,uint256) permit, bytes signature, address receiver, uint256 amount)": {
+        "$id": "permit2TransferFromWithPermit",
+        "intent": "Permit2 pull with signature",
+        "fields": [
+          {
+            "path": "permit.permitted.token",
+            "label": "Token",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "token"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "permit.permitted.amount",
+            "label": "Permit amount",
+            "format": "tokenAmount",
+            "params": {
+              "tokenPath": "permit.permitted.token"
+            },
+            "visible": "always"
+          },
+          {
+            "path": "permit.deadline",
+            "label": "Permit deadline",
+            "format": "date",
+            "params": {
+              "encoding": "timestamp"
+            },
+            "visible": "always"
+          },
+          {
+            "path": "permit.nonce",
+            "label": "Nonce",
+            "visible": "never"
+          },
+          {
+            "path": "signature",
+            "label": "Signature",
+            "visible": "never"
+          },
+          {
+            "path": "receiver",
+            "label": "Receiver",
+            "format": "addressName",
+            "params": {
+              "types": [
+                "eoa",
+                "wallet"
+              ]
+            },
+            "visible": "always"
+          },
+          {
+            "path": "amount",
+            "label": "Pull amount",
+            "format": "tokenAmount",
+            "params": {
+              "tokenPath": "permit.permitted.token"
+            },
+            "visible": "always"
+          }
+        ],
+        "interpolatedIntent": "Permit2 pull to {receiver}"
+      }
+    }
+  }
+}
