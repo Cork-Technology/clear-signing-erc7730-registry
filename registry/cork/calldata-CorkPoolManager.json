@@ -2440,7 +2440,7 @@
       },
       "setAllPaused(bool isAllPaused)": {
         "$id": "setAllPaused",
-        "intent": "Pause all markets",
+        "intent": "Set pause-all flag",
         "fields": [
           {
             "path": "isAllPaused",
@@ -2449,7 +2449,7 @@
             "visible": "always"
           }
         ],
-        "interpolatedIntent": "Pause all: {isAllPaused}"
+        "interpolatedIntent": "Set pause-all to {isAllPaused}"
       },
       "setPausedBitMap(bytes32 poolId, uint16 newPauseBitMap)": {
         "$id": "setPausedBitMap",
